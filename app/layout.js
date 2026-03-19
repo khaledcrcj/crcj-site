@@ -2,6 +2,7 @@ export const metadata = {
   title: "CRCJ | Cairo Regional Center for Criminal Justice",
   description:
     "CRCJ is a Cairo-based regional platform advancing criminal justice through accredited credit-hour programs, non-credit professional training, policy engagement, and strategic cooperation across Egypt, Africa, and the Middle East.",
+
   keywords: [
     "CRCJ",
     "Cairo Regional Center for Criminal Justice",
@@ -16,10 +17,24 @@ export const metadata = {
     "security",
     "justice sector",
   ],
+
   authors: [{ name: "CRCJ" }],
   creator: "CRCJ",
   publisher: "CRCJ",
+
   metadataBase: new URL("https://crcj.org"),
+
+  viewport: "width=device-width, initial-scale=1",
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  alternates: {
+    canonical: "https://crcj.org",
+  },
+
   openGraph: {
     title: "CRCJ | Cairo Regional Center for Criminal Justice",
     description:
@@ -37,6 +52,7 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
     title: "CRCJ | Cairo Regional Center for Criminal Justice",
@@ -44,6 +60,7 @@ export const metadata = {
       "A regional hub for advancing criminal justice across Egypt, Africa, and the Middle East.",
     images: ["/og-image.png"],
   },
+
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -53,7 +70,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" dir="ltr">
       <body style={{ fontFamily: "Arial, sans-serif", margin: 0 }}>
         {children}
       </body>
