@@ -22,12 +22,12 @@ export default function Page() {
             flexWrap: "wrap",
           }}
         >
-          <div>
-            <div style={{ fontSize: "12px", letterSpacing: "2px", color: "#2563eb", fontWeight: "700" }}>CRCJ</div>
-            <div style={{ fontSize: "20px", fontWeight: "700", color: "#0f172a" }}>
-              Cairo Regional Center for Criminal Justice
-            </div>
-          </div>
+<div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+  <img src="/logo.png" alt="CRCJ Logo" style={{ height: "42px" }} />
+  <div style={{ fontSize: "20px", fontWeight: "700", color: "#0f172a" }}>
+    Cairo Regional Center for Criminal Justice
+  </div>
+</div>
 
           <nav style={{ display: "flex", gap: "22px", flexWrap: "wrap", fontSize: "14px" }}>
             <a href="#about" style={{ textDecoration: "none", color: "#475569" }}>About</a>
