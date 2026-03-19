@@ -162,7 +162,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ABOUT */}
+      {/* ABOUT - STAYS WHITE */}
       <section id="about" style={{ padding: "95px 40px", backgroundColor: "#ffffff" }}>
         <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
           <div style={{ color: "#2563eb", fontSize: "13px", fontWeight: "700", letterSpacing: "1px" }}>
@@ -182,7 +182,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* HIGHLIGHTS */}
+      {/* HIGHLIGHTS - STAYS WHITE */}
       <section style={{ padding: "0 40px 95px 40px", backgroundColor: "#ffffff" }}>
         <div
           style={{
@@ -218,11 +218,30 @@ export default function Page() {
         </div>
       </section>
 
-      {/* WHAT WE DO */}
-      <section id="areas" style={{ backgroundColor: "#f8fafc", padding: "95px 40px" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      {/* WHAT WE DO - DARK GRADIENT */}
+      <section
+        id="areas"
+        style={{
+          background: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
+          padding: "95px 40px",
+          color: "#ffffff",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 25%), radial-gradient(circle at bottom right, rgba(255,255,255,0.06), transparent 25%)",
+            pointerEvents: "none",
+          }}
+        />
+
+        <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div style={{ textAlign: "center" }}>
-            <div style={{ color: "#2563eb", fontSize: "13px", fontWeight: "700", letterSpacing: "1px" }}>
+            <div style={{ color: "#bfdbfe", fontSize: "13px", fontWeight: "700", letterSpacing: "1px" }}>
               WHAT WE DO
             </div>
 
@@ -250,12 +269,13 @@ export default function Page() {
               <div
                 key={item}
                 style={{
-                  backgroundColor: "#ffffff",
+                  backgroundColor: "rgba(255,255,255,0.08)",
                   padding: "24px",
-                  border: "1px solid #e5e7eb",
+                  border: "1px solid rgba(255,255,255,0.15)",
                   borderRadius: "12px",
                   fontWeight: "600",
-                  boxShadow: "0 1px 2px rgba(15,23,42,0.03)",
+                  color: "#ffffff",
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.10)",
                 }}
               >
                 {item}
@@ -265,7 +285,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* PROGRAMS */}
+      {/* PROGRAMS - WHITE */}
       <section id="programs" style={{ padding: "95px 40px", backgroundColor: "#ffffff" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <div style={{ color: "#2563eb", fontSize: "13px", fontWeight: "700", letterSpacing: "1px" }}>
@@ -337,8 +357,120 @@ export default function Page() {
         </div>
       </section>
 
-      {/* CONTACT */}
-      <section id="contact" style={{ padding: "95px 40px", backgroundColor: "#0f172a", color: "#ffffff" }}>
+      {/* NEWSLETTER / TALK TO US - SAME HERO COLOR SYSTEM */}
+      <section
+        style={{
+          background: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
+          color: "#ffffff",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: "url('/logo.png')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "700px",
+            backgroundPosition: "left center",
+            opacity: 0.08,
+            pointerEvents: "none",
+          }}
+        />
+
+        <div
+          style={{
+            maxWidth: "1400px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
+          <div style={{ padding: "60px 40px" }}>
+            <h2 style={{ fontSize: "28px", margin: 0, marginBottom: "8px" }}>Newsletter</h2>
+            <p style={{ fontSize: "16px", margin: 0, marginBottom: "22px", color: "#eaf4ff" }}>
+              Receive updates straight into your mailbox.
+            </p>
+
+            <input
+              type="email"
+              placeholder="Email Address"
+              style={{
+                width: "100%",
+                maxWidth: "420px",
+                padding: "16px",
+                borderRadius: "6px",
+                border: "none",
+                marginBottom: "14px",
+                boxSizing: "border-box",
+              }}
+            />
+
+            <button
+              style={{
+                width: "100%",
+                maxWidth: "420px",
+                padding: "14px",
+                borderRadius: "6px",
+                border: "none",
+                fontWeight: "700",
+                backgroundColor: "#f3f4f6",
+                color: "#111827",
+                cursor: "pointer",
+              }}
+            >
+              Submit
+            </button>
+          </div>
+
+          <div
+            style={{
+              padding: "60px 40px",
+              borderLeft: "2px solid rgba(255,255,255,0.25)",
+            }}
+          >
+            <h2 style={{ fontSize: "28px", margin: 0, marginBottom: "8px" }}>Talk to us</h2>
+            <p style={{ margin: 0, marginBottom: "24px", color: "#eaf4ff" }}>
+              Connect with us on our socials and keep up to date.
+            </p>
+
+            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+              {["▶", "X", "f", "in"].map((icon) => (
+                <div
+                  key={icon}
+                  style={{
+                    width: "44px",
+                    height: "44px",
+                    backgroundColor: "#ffffff",
+                    color: "#1d4ed8",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: "8px",
+                    fontWeight: "700",
+                    fontSize: "20px",
+                  }}
+                >
+                  {icon}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT - MOVED TO VERY END */}
+      <section
+        id="contact"
+        style={{
+          padding: "95px 40px",
+          background: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
+          color: "#ffffff",
+        }}
+      >
         <div style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "center" }}>
           <div style={{ color: "#93c5fd", fontSize: "13px", fontWeight: "700", letterSpacing: "1px" }}>
             CONTACT
@@ -350,93 +482,6 @@ export default function Page() {
 
           <p style={{ marginTop: "20px", fontSize: "18px", color: "#cbd5e1" }}>info@crcj.org</p>
           <p style={{ fontSize: "18px", color: "#cbd5e1" }}>Cairo, Egypt</p>
-        </div>
-      </section>
-
-      {/* NEWSLETTER / TALK TO US */}
-      <section style={{ backgroundColor: "#1177c9", color: "#ffffff" }}>
-        <div
-          style={{
-            maxWidth: "1400px",
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          }}
-        >
-          <div style={{ padding: "50px 40px" }}>
-            <h2 style={{ fontSize: "28px", margin: 0, marginBottom: "8px" }}>Newsletter</h2>
-            <p style={{ fontSize: "16px", margin: 0, marginBottom: "22px", color: "#eaf4ff" }}>
-              Receive updates straight into your mailbox.
-            </p>
-
-            <input
-              type="email"
-              placeholder="Email Address"
-              style={{
-                width: "100%",
-                maxWidth: "500px",
-                padding: "16px 18px",
-                border: "none",
-                borderRadius: "6px",
-                fontSize: "16px",
-                marginBottom: "18px",
-                boxSizing: "border-box",
-              }}
-            />
-
-            <button
-              style={{
-                width: "100%",
-                maxWidth: "500px",
-                padding: "14px 18px",
-                backgroundColor: "#f3f4f6",
-                color: "#111827",
-                border: "none",
-                borderRadius: "6px",
-                fontSize: "16px",
-                fontWeight: "700",
-                cursor: "pointer",
-              }}
-            >
-              Submit
-            </button>
-          </div>
-
-          <div
-            style={{
-              padding: "50px 40px",
-              borderLeft: "2px solid rgba(255,255,255,0.28)",
-            }}
-          >
-            <h2 style={{ fontSize: "28px", margin: 0, marginBottom: "8px" }}>Talk to us</h2>
-            <p style={{ fontSize: "16px", margin: 0, marginBottom: "26px", color: "#eaf4ff" }}>
-              Connect with us on our socials and keep up to date.
-            </p>
-
-            <div style={{ display: "flex", gap: "18px", flexWrap: "wrap" }}>
-              {["▶", "X", "f", "in", "●●"].map((icon) => (
-                <a
-                  key={icon}
-                  href="#"
-                  style={{
-                    width: "44px",
-                    height: "44px",
-                    borderRadius: "8px",
-                    backgroundColor: "#ffffff",
-                    color: "#1177c9",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    textDecoration: "none",
-                    fontWeight: "700",
-                    fontSize: "20px",
-                  }}
-                >
-                  {icon}
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
