@@ -1,25 +1,58 @@
 export default function Page() {
   const focusAreas = [
-    "Transnational Crime and Security",
-    "Illicit Financial Flows and Anti-Corruption",
-    "Violent Extremism and Prevention",
-    "Cybercrime and Emerging Technologies",
-    "Rule of Law and Access to Justice",
-    "Security Governance and Risk Mitigation",
+    {
+      title: "Transnational Crime and Security",
+      text: "Addressing organized crime, trafficking networks, and cross-border criminal activities through training, research, and international cooperation initiatives.",
+    },
+    {
+      title: "Illicit Financial Flows and Anti-Corruption",
+      text: "Focusing on financial crime, money laundering, asset recovery, and anti-corruption frameworks to strengthen financial integrity and institutional resilience.",
+    },
+    {
+      title: "Violent Extremism and Prevention",
+      text: "Supporting prevention strategies, rehabilitation frameworks, and policy responses to counter violent extremism and related threats.",
+    },
+    {
+      title: "Cybercrime and Emerging Technologies",
+      text: "Addressing the criminal use of technology, including cybercrime, digital evidence, and the implications of emerging technologies such as artificial intelligence.",
+    },
+    {
+      title: "Rule of Law and Access to Justice",
+      text: "Promoting legal frameworks, judicial capacity, and access to justice, including institutional strengthening and governance mechanisms.",
+    },
+    {
+      title: "Security Governance and Risk Mitigation",
+      text: "Enhancing institutional preparedness, risk assessment, and governance approaches to address evolving security challenges.",
+    },
+  ];
+
+  const publications = [
+    {
+      title: "Research and Policy Papers",
+      text: "Analytical publications addressing emerging criminal justice issues, regional trends, and policy frameworks.",
+    },
+    {
+      title: "Reports and Briefings",
+      text: "Targeted reports and thematic briefings supporting decision-makers, institutions, and practitioners.",
+    },
+    {
+      title: "Events and Knowledge Exchange",
+      text: "Workshops, seminars, and expert dialogues fostering regional cooperation and knowledge sharing.",
+    },
   ];
 
   const programCards = [
     {
       title: "Accredited Credit-Hour Programs",
-      text: "Programs delivered under approved academic partnership frameworks, offering credit hours recognized subject to the requirements and accreditation of the relevant partner institution.",
+      text: "Accredited credit-hour programs delivered under approved academic partnership frameworks, designed to provide structured academic content in criminal justice and related fields. Academic credit is awarded in accordance with the requirements and accreditation of the relevant partner institution and the applicable program framework.",
     },
     {
       title: "Non-Credit Professional Programs",
-      text: "Executive education, short courses, and specialized professional training tailored to criminal justice practitioners, institutions, and sector stakeholders.",
+      text: "Non-credit professional programs, including executive education, short courses, and specialized training modules, designed to support practitioners, institutions, and sector stakeholders across the criminal justice ecosystem through targeted, practice-oriented learning.",
     },
     {
       title: "Capacity Building and Specialized Training",
-      text: "Targeted programs supporting institutional development, regional cooperation, and operational readiness across justice and enforcement sectors.",
+      text: "Capacity-building and specialized training initiatives developed to support institutional strengthening, regional cooperation, and operational effectiveness across justice, enforcement, and regulatory sectors, addressing emerging and priority criminal justice challenges.",
     },
   ];
 
@@ -70,6 +103,7 @@ export default function Page() {
           <nav style={{ display: "flex", gap: "24px", fontSize: "14px", flexWrap: "wrap" }}>
             <a href="#about" style={{ color: "#334155", textDecoration: "none" }}>About</a>
             <a href="#areas" style={{ color: "#334155", textDecoration: "none" }}>What We Do</a>
+            <a href="#publications" style={{ color: "#334155", textDecoration: "none" }}>Publications</a>
             <a href="#programs" style={{ color: "#334155", textDecoration: "none" }}>Education & Training</a>
             <a href="#newsletter" style={{ color: "#334155", textDecoration: "none" }}>Newsletter</a>
             <a href="#contact" style={{ color: "#334155", textDecoration: "none" }}>Contact</a>
@@ -77,7 +111,7 @@ export default function Page() {
         </div>
       </header>
 
-      {/* HERO - KEEPING YOUR PREFERRED VERSION */}
+      {/* HERO */}
       <section
         style={{
           background: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
@@ -121,7 +155,7 @@ export default function Page() {
                 letterSpacing: "0.5px",
               }}
             >
-              Regional Platform for Criminal Justice Education and Cooperation
+              Regional Platform for Criminal Justice, Security, and Rule of Law
             </div>
 
             <div
@@ -143,6 +177,10 @@ export default function Page() {
 
             <p style={{ marginTop: "22px", fontSize: "21px", lineHeight: "1.8", color: "#dbeafe", maxWidth: "760px" }}>
               A Regional Hub for Advancing Criminal Justice Across Egypt, Africa, and the Middle East
+            </p>
+
+            <p style={{ marginTop: "16px", fontSize: "17px", lineHeight: "1.8", color: "#dbeafe", maxWidth: "760px" }}>
+              CRCJ brings together education, training, and policy engagement to address evolving criminal justice challenges across Egypt, Africa, and the Middle East.
             </p>
 
             <p style={{ marginTop: "12px", direction: "rtl", fontSize: "18px", color: "#e2e8f0", maxWidth: "760px" }}>
@@ -198,7 +236,15 @@ export default function Page() {
       {/* ABOUT */}
       <section id="about" style={{ padding: "88px 40px", backgroundColor: "#ffffff" }}>
         <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-          <div style={{ color: "#2563eb", fontSize: "13px", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase" }}>
+          <div
+            style={{
+              color: "#2563eb",
+              fontSize: "13px",
+              fontWeight: "700",
+              letterSpacing: "1px",
+              textTransform: "uppercase",
+            }}
+          >
             About CRCJ
           </div>
 
@@ -207,10 +253,7 @@ export default function Page() {
           </h2>
 
           <p style={{ marginTop: "24px", fontSize: "18px", lineHeight: "1.9", color: "#475569", maxWidth: "940px" }}>
-            The Cairo Regional Center for Criminal Justice (CRCJ) is a regional platform dedicated to advancing
-            criminal justice education, professional training, strategic cooperation, and policy dialogue. Based in Cairo,
-            the Center is positioned to serve Egypt, Africa, and the Middle East through structured academic delivery,
-            executive education, and specialized capacity-building initiatives.
+            The Cairo Regional Center for Criminal Justice (CRCJ) is a Cairo-based regional platform established to advance criminal justice through education, professional training, policy engagement, and strategic cooperation. Serving Egypt, Africa, and the Middle East, CRCJ seeks to support justice-sector institutions, professionals, and partners through accredited credit-hour programs, non-credit professional training, and specialized capacity-building initiatives in areas of regional and international relevance.
           </p>
         </div>
       </section>
@@ -273,13 +316,25 @@ export default function Page() {
 
         <div style={{ maxWidth: "1120px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div style={{ textAlign: "center" }}>
-            <div style={{ color: "#bfdbfe", fontSize: "13px", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase" }}>
+            <div
+              style={{
+                color: "#bfdbfe",
+                fontSize: "13px",
+                fontWeight: "700",
+                letterSpacing: "1px",
+                textTransform: "uppercase",
+              }}
+            >
               What We Do
             </div>
 
             <h2 style={{ fontSize: "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
               Areas of focus
             </h2>
+
+            <p style={{ marginTop: "18px", maxWidth: "860px", marginInline: "auto", color: "#dbeafe", lineHeight: "1.8", fontSize: "17px" }}>
+              CRCJ operates across a set of core thematic areas addressing priority criminal justice challenges at the national, regional, and international levels.
+            </p>
           </div>
 
           <div
@@ -292,17 +347,66 @@ export default function Page() {
           >
             {focusAreas.map((item) => (
               <div
-                key={item}
+                key={item.title}
                 style={{
                   backgroundColor: "rgba(255,255,255,0.08)",
                   padding: "24px",
                   border: "1px solid rgba(255,255,255,0.15)",
                   borderRadius: "12px",
-                  fontWeight: "600",
                   color: "#ffffff",
                 }}
               >
-                {item}
+                <h3 style={{ marginTop: 0, marginBottom: "12px", fontSize: "20px", lineHeight: "1.35" }}>{item.title}</h3>
+                <p style={{ margin: 0, color: "#dbeafe", lineHeight: "1.8", fontSize: "15px" }}>{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PUBLICATIONS */}
+      <section id="publications" style={{ padding: "88px 40px", backgroundColor: "#ffffff" }}>
+        <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
+          <div
+            style={{
+              color: "#2563eb",
+              fontSize: "13px",
+              fontWeight: "700",
+              letterSpacing: "1px",
+              textTransform: "uppercase",
+            }}
+          >
+            Publications and Insights
+          </div>
+
+          <h2 style={{ fontSize: "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
+            Knowledge development and policy dialogue
+          </h2>
+
+          <p style={{ marginTop: "20px", fontSize: "17px", lineHeight: "1.8", color: "#475569", maxWidth: "940px" }}>
+            CRCJ contributes to knowledge development and policy dialogue through publications, research outputs, and analytical work addressing key criminal justice challenges.
+          </p>
+
+          <div
+            style={{
+              marginTop: "38px",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "20px",
+            }}
+          >
+            {publications.map((item) => (
+              <div
+                key={item.title}
+                style={{
+                  border: "1px solid #e5e7eb",
+                  padding: "28px",
+                  borderRadius: "12px",
+                  backgroundColor: "#f8fafc",
+                }}
+              >
+                <h3 style={{ marginTop: 0, marginBottom: "14px", fontSize: "22px", lineHeight: "1.35" }}>{item.title}</h3>
+                <p style={{ margin: 0, lineHeight: "1.8", color: "#475569" }}>{item.text}</p>
               </div>
             ))}
           </div>
@@ -312,13 +416,25 @@ export default function Page() {
       {/* EDUCATION AND PROFESSIONAL TRAINING */}
       <section id="programs" style={{ padding: "88px 40px", backgroundColor: "#ffffff" }}>
         <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
-          <div style={{ color: "#2563eb", fontSize: "13px", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase" }}>
+          <div
+            style={{
+              color: "#2563eb",
+              fontSize: "13px",
+              fontWeight: "700",
+              letterSpacing: "1px",
+              textTransform: "uppercase",
+            }}
+          >
             Education and Professional Training
           </div>
 
           <h2 style={{ fontSize: "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
             Program pathways
           </h2>
+
+          <p style={{ marginTop: "20px", fontSize: "17px", lineHeight: "1.8", color: "#475569", maxWidth: "940px" }}>
+            CRCJ delivers accredited credit-hour and non-credit programs in criminal justice through structured academic and professional frameworks designed to support regional capacity and institutional development.
+          </p>
 
           <div
             style={{
@@ -345,8 +461,7 @@ export default function Page() {
           </div>
 
           <p style={{ marginTop: "28px", fontSize: "14px", color: "#64748b", lineHeight: "1.8" }}>
-            Academic credit, certification, and recognition are subject to the requirements and approval of the relevant
-            accredited partner institutions and applicable program frameworks.
+            Academic credit, certification, and any formal recognition are subject to the requirements, approval processes, and accreditation frameworks of the relevant partner institutions.
           </p>
         </div>
       </section>
@@ -467,7 +582,15 @@ export default function Page() {
         }}
       >
         <div style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "center" }}>
-          <div style={{ color: "#93c5fd", fontSize: "13px", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase" }}>
+          <div
+            style={{
+              color: "#93c5fd",
+              fontSize: "13px",
+              fontWeight: "700",
+              letterSpacing: "1px",
+              textTransform: "uppercase",
+            }}
+          >
             Contact
           </div>
 
@@ -475,8 +598,12 @@ export default function Page() {
             Connect with CRCJ
           </h2>
 
-          <p style={{ marginTop: "20px", fontSize: "18px", color: "#cbd5e1" }}>info@crcj.org</p>
-          <p style={{ fontSize: "18px", color: "#cbd5e1" }}>Cairo, Egypt</p>
+          <p style={{ marginTop: "20px", fontSize: "18px", color: "#cbd5e1", lineHeight: "1.8" }}>
+            For institutional partnerships, program participation, and general inquiries, please contact:
+          </p>
+
+          <p style={{ fontSize: "18px", color: "#cbd5e1", marginTop: "18px" }}>info@crcj.org</p>
+          <p style={{ fontSize: "18px", color: "#cbd5e1" }}>Cairo, Arab Republic of Egypt</p>
         </div>
       </section>
 
@@ -489,9 +616,11 @@ export default function Page() {
           fontSize: "14px",
           backgroundColor: "#ffffff",
           borderTop: "1px solid #e5e7eb",
+          lineHeight: "1.8",
         }}
       >
-        © 2026 Cairo Regional Center for Criminal Justice (CRCJ)
+        <div>© 2026 Cairo Regional Center for Criminal Justice (CRCJ). All rights reserved.</div>
+        <div>CRCJ is a regional platform dedicated to advancing criminal justice through education, training, and cooperation.</div>
       </footer>
     </main>
   );
