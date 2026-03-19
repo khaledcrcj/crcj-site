@@ -46,6 +46,14 @@ export default function Page() {
     return () => clearInterval(interval);
   }, [heroImages.length]);
 
+  const goPrev = () => {
+    setCurrentHero((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  };
+
+  const goNext = () => {
+    setCurrentHero((prev) => (prev + 1) % heroImages.length);
+  };
+
   const t = {
     en: {
       navAbout: "About",
@@ -164,7 +172,7 @@ export default function Page() {
 
       heroLabel: "منصة إقليمية للعدالة الجنائية والأمن وسيادة القانون",
       heroTop: "القاهرة • مصر • أفريقيا • الشرق الأوسط",
-      heroTitle: "مركز القاهرة الأقليمي للعدالة الجنائية",
+      heroTitle: "مركز القاهرة الإقليمي للعدالة الجنائية",
       heroSubtitle: "مركز إقليمي للنهوض بالعدالة الجنائية في مصر وأفريقيا والشرق الأوسط",
       heroText:
         "يجمع مركز CRCJ بين التعليم والتدريب والمشاركة في السياسات لمعالجة تحديات العدالة الجنائية المتطورة في مصر وأفريقيا والشرق الأوسط.",
@@ -174,7 +182,7 @@ export default function Page() {
       aboutLabel: "حول CRCJ",
       aboutTitle: "منصة مقرها القاهرة للتميز في مجال العدالة الجنائية",
       aboutText:
-        "يُعدّ المركز الإقليمي للعدالة الجنائية بالقاهرة منصةً إقليميةً مقرها القاهرة، أُنشئت للنهوض بالعدالة الجنائية من خلال التعليم والتدريب المهني والمشاركة في وضع السياسات والتعاون الاستراتيجي. ويسعى المركز، الذي يخدم مصر وأفريقيا والشرق الأوسط، إلى دعم مؤسسات قطاع العدالة والمهنيين والشركاء من خلال برامج معتمدة بساعات دراسية محددة، وبرامج تدريبية مهنية غير معتمدة، ومبادرات متخصصة لبناء القدرات في مجالات ذات أهمية إقليمية ودولية.",
+        "يُعدّ مركز القاهرة الإقليمي للعدالة الجنائية منصةً إقليميةً مقرها القاهرة، أُنشئت للنهوض بالعدالة الجنائية من خلال التعليم والتدريب المهني والمشاركة في وضع السياسات والتعاون الاستراتيجي. ويسعى المركز، الذي يخدم مصر وأفريقيا والشرق الأوسط، إلى دعم مؤسسات قطاع العدالة والمهنيين والشركاء من خلال برامج معتمدة بساعات دراسية محددة، وبرامج تدريبية مهنية غير معتمدة، ومبادرات متخصصة لبناء القدرات في مجالات ذات أهمية إقليمية ودولية.",
 
       h1: "مصر",
       h1t: "القاعدة المؤسسية والمقر الرئيسي",
@@ -254,7 +262,7 @@ export default function Page() {
       contactEmail: "info@crcj.org",
       contactLocation: "القاهرة، جمهورية مصر العربية",
 
-      footer1: "© 2026 المركز الإقليمي للعدالة الجنائية بالقاهرة. جميع الحقوق محفوظة.",
+      footer1: "© 2026 مركز القاهرة الإقليمي للعدالة الجنائية. جميع الحقوق محفوظة.",
       footer2: "CRCJ منصة إقليمية مخصصة للنهوض بالعدالة الجنائية من خلال التعليم والتدريب والتعاون.",
       langEN: "EN",
       langAR: "AR",
@@ -337,7 +345,7 @@ export default function Page() {
                   wordBreak: "break-word",
                 }}
               >
-                {isAr ? "المركز الإقليمي للعدالة الجنائية بالقاهرة" : "Cairo Regional Center for Criminal Justice"}
+                {isAr ? "مركز القاهرة الإقليمي للعدالة الجنائية" : "Cairo Regional Center for Criminal Justice"}
               </div>
             </div>
           </div>
@@ -431,12 +439,59 @@ export default function Page() {
           }}
         />
 
+        {/* Hero Controls */}
+        <button
+          onClick={goPrev}
+          aria-label="Previous slide"
+          style={{
+            position: "absolute",
+            left: "16px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            zIndex: 2,
+            width: "42px",
+            height: "42px",
+            borderRadius: "999px",
+            border: "1px solid rgba(255,255,255,0.3)",
+            background: "rgba(255,255,255,0.14)",
+            color: "#ffffff",
+            cursor: "pointer",
+            fontSize: "20px",
+            fontWeight: "700",
+          }}
+        >
+          {isAr ? "›" : "‹"}
+        </button>
+
+        <button
+          onClick={goNext}
+          aria-label="Next slide"
+          style={{
+            position: "absolute",
+            right: "16px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            zIndex: 2,
+            width: "42px",
+            height: "42px",
+            borderRadius: "999px",
+            border: "1px solid rgba(255,255,255,0.3)",
+            background: "rgba(255,255,255,0.14)",
+            color: "#ffffff",
+            cursor: "pointer",
+            fontSize: "20px",
+            fontWeight: "700",
+          }}
+        >
+          {isAr ? "‹" : "›"}
+        </button>
+
         <div
           style={{
             maxWidth: "1240px",
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gridTemplateColumns: "1fr",
             gap: "36px",
             alignItems: "center",
             position: "relative",
@@ -444,7 +499,7 @@ export default function Page() {
             width: "100%",
           }}
         >
-          <div>
+          <div style={{ maxWidth: "780px" }}>
             <div
               style={{
                 display: "inline-block",
@@ -538,19 +593,36 @@ export default function Page() {
               </a>
             </div>
           </div>
+        </div>
 
-          <div style={{ textAlign: "center" }}>
-            <img
-              src="/logo.png"
-              alt="CRCJ Logo"
+        {/* Dots */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: "22px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 2,
+            display: "flex",
+            gap: "10px",
+          }}
+        >
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentHero(index)}
+              aria-label={`Go to slide ${index + 1}`}
               style={{
-                width: "min(430px, 85%)",
-                maxWidth: "100%",
-                height: "auto",
-                filter: "drop-shadow(0 18px 35px rgba(0,0,0,0.25))",
+                width: currentHero === index ? "28px" : "10px",
+                height: "10px",
+                borderRadius: "999px",
+                border: "none",
+                cursor: "pointer",
+                backgroundColor: currentHero === index ? "#ffffff" : "rgba(255,255,255,0.45)",
+                transition: "all 0.25s ease",
               }}
             />
-          </div>
+          ))}
         </div>
       </section>
 
