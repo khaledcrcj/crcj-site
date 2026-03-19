@@ -1,4 +1,28 @@
 export default function Page() {
+  const focusAreas = [
+    "Transnational Crime and Security",
+    "Illicit Financial Flows and Anti-Corruption",
+    "Violent Extremism and Prevention",
+    "Cybercrime and Emerging Technologies",
+    "Rule of Law and Access to Justice",
+    "Security Governance and Risk Mitigation",
+  ];
+
+  const programCards = [
+    {
+      title: "Accredited Credit-Hour Programs",
+      text: "Programs delivered under approved academic partnership frameworks, offering credit hours recognized subject to the requirements and accreditation of the relevant partner institution.",
+    },
+    {
+      title: "Non-Credit Professional Programs",
+      text: "Executive education, short courses, and specialized professional training tailored to criminal justice practitioners, institutions, and sector stakeholders.",
+    },
+    {
+      title: "Capacity Building and Specialized Training",
+      text: "Targeted programs supporting institutional development, regional cooperation, and operational readiness across justice and enforcement sectors.",
+    },
+  ];
+
   return (
     <main style={{ fontFamily: "Arial, sans-serif", backgroundColor: "#ffffff", color: "#0f172a" }}>
       {/* HEADER */}
@@ -6,15 +30,15 @@ export default function Page() {
         style={{
           backgroundColor: "#ffffff",
           borderBottom: "1px solid #e5e7eb",
-          padding: "18px 40px",
+          padding: "16px 36px",
           position: "sticky",
           top: 0,
-          zIndex: 10,
+          zIndex: 20,
         }}
       >
         <div
           style={{
-            maxWidth: "1200px",
+            maxWidth: "1240px",
             margin: "0 auto",
             display: "flex",
             justifyContent: "space-between",
@@ -24,9 +48,17 @@ export default function Page() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-            <img src="/logo.png" alt="CRCJ Logo" style={{ height: "60px" }} />
-            <div style={{ lineHeight: "1.3" }}>
-              <div style={{ fontSize: "12px", letterSpacing: "2px", color: "#2563eb", fontWeight: "700" }}>
+            <img src="/logo.png" alt="CRCJ Logo" style={{ height: "58px" }} />
+            <div style={{ lineHeight: "1.25" }}>
+              <div
+                style={{
+                  fontSize: "12px",
+                  letterSpacing: "2px",
+                  color: "#2563eb",
+                  fontWeight: "700",
+                  textTransform: "uppercase",
+                }}
+              >
                 CRCJ
               </div>
               <div style={{ fontSize: "18px", fontWeight: "700", color: "#0f172a" }}>
@@ -35,16 +67,17 @@ export default function Page() {
             </div>
           </div>
 
-          <nav style={{ display: "flex", gap: "28px", fontSize: "14px", flexWrap: "wrap" }}>
-            <a href="#about" style={{ color: "#374151", textDecoration: "none" }}>About</a>
-            <a href="#areas" style={{ color: "#374151", textDecoration: "none" }}>What We Do</a>
-            <a href="#programs" style={{ color: "#374151", textDecoration: "none" }}>Programs</a>
-            <a href="#contact" style={{ color: "#374151", textDecoration: "none" }}>Contact</a>
+          <nav style={{ display: "flex", gap: "24px", fontSize: "14px", flexWrap: "wrap" }}>
+            <a href="#about" style={{ color: "#334155", textDecoration: "none" }}>About</a>
+            <a href="#areas" style={{ color: "#334155", textDecoration: "none" }}>What We Do</a>
+            <a href="#programs" style={{ color: "#334155", textDecoration: "none" }}>Education & Training</a>
+            <a href="#newsletter" style={{ color: "#334155", textDecoration: "none" }}>Newsletter</a>
+            <a href="#contact" style={{ color: "#334155", textDecoration: "none" }}>Contact</a>
           </nav>
         </div>
       </header>
 
-      {/* HERO */}
+      {/* HERO - KEEPING YOUR PREFERRED VERSION */}
       <section
         style={{
           background: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
@@ -66,7 +99,7 @@ export default function Page() {
 
         <div
           style={{
-            maxWidth: "1200px",
+            maxWidth: "1240px",
             margin: "0 auto",
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
@@ -162,18 +195,18 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ABOUT - STAYS WHITE */}
-      <section id="about" style={{ padding: "95px 40px", backgroundColor: "#ffffff" }}>
+      {/* ABOUT */}
+      <section id="about" style={{ padding: "88px 40px", backgroundColor: "#ffffff" }}>
         <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-          <div style={{ color: "#2563eb", fontSize: "13px", fontWeight: "700", letterSpacing: "1px" }}>
-            ABOUT CRCJ
+          <div style={{ color: "#2563eb", fontSize: "13px", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase" }}>
+            About CRCJ
           </div>
 
-          <h2 style={{ fontSize: "36px", marginTop: "14px", marginBottom: 0 }}>
+          <h2 style={{ fontSize: "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
             A Cairo-based platform for criminal justice excellence
           </h2>
 
-          <p style={{ marginTop: "24px", fontSize: "18px", lineHeight: "1.9", color: "#475569", maxWidth: "920px" }}>
+          <p style={{ marginTop: "24px", fontSize: "18px", lineHeight: "1.9", color: "#475569", maxWidth: "940px" }}>
             The Cairo Regional Center for Criminal Justice (CRCJ) is a regional platform dedicated to advancing
             criminal justice education, professional training, strategic cooperation, and policy dialogue. Based in Cairo,
             the Center is positioned to serve Egypt, Africa, and the Middle East through structured academic delivery,
@@ -182,11 +215,11 @@ export default function Page() {
         </div>
       </section>
 
-      {/* HIGHLIGHTS - STAYS WHITE */}
-      <section style={{ padding: "0 40px 95px 40px", backgroundColor: "#ffffff" }}>
+      {/* STRATEGIC HIGHLIGHTS */}
+      <section style={{ padding: "0 40px 88px 40px", backgroundColor: "#ffffff" }}>
         <div
           style={{
-            maxWidth: "1100px",
+            maxWidth: "1120px",
             margin: "0 auto",
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
@@ -197,16 +230,15 @@ export default function Page() {
             ["Egypt", "Institutional base and headquarters"],
             ["Africa", "Regional reach and future expansion"],
             ["Middle East", "Strategic engagement and cooperation"],
-            ["Academic + Professional", "Credit and non-credit pathways"],
+            ["Credit + Non-Credit", "Academic and professional pathways"],
           ].map((item) => (
             <div
               key={item[0]}
               style={{
                 backgroundColor: "#f8fafc",
                 border: "1px solid #e5e7eb",
-                borderRadius: "14px",
+                borderRadius: "12px",
                 padding: "24px",
-                boxShadow: "0 1px 2px rgba(15,23,42,0.03)",
               }}
             >
               <div style={{ fontSize: "26px", fontWeight: "700", color: "#0f172a" }}>{item[0]}</div>
@@ -218,12 +250,12 @@ export default function Page() {
         </div>
       </section>
 
-      {/* WHAT WE DO - DARK GRADIENT */}
+      {/* WHAT WE DO */}
       <section
         id="areas"
         style={{
           background: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
-          padding: "95px 40px",
+          padding: "88px 40px",
           color: "#ffffff",
           position: "relative",
           overflow: "hidden",
@@ -239,13 +271,13 @@ export default function Page() {
           }}
         />
 
-        <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <div style={{ maxWidth: "1120px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div style={{ textAlign: "center" }}>
-            <div style={{ color: "#bfdbfe", fontSize: "13px", fontWeight: "700", letterSpacing: "1px" }}>
-              WHAT WE DO
+            <div style={{ color: "#bfdbfe", fontSize: "13px", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase" }}>
+              What We Do
             </div>
 
-            <h2 style={{ fontSize: "36px", marginTop: "14px", marginBottom: 0 }}>
+            <h2 style={{ fontSize: "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
               Areas of focus
             </h2>
           </div>
@@ -258,14 +290,7 @@ export default function Page() {
               gap: "20px",
             }}
           >
-            {[
-              "Transnational Crime and Security",
-              "Illicit Financial Flows and Anti-Corruption",
-              "Violent Extremism and Prevention",
-              "Cybercrime and Emerging Technologies",
-              "Rule of Law and Access to Justice",
-              "Security Governance and Risk Mitigation",
-            ].map((item) => (
+            {focusAreas.map((item) => (
               <div
                 key={item}
                 style={{
@@ -275,7 +300,6 @@ export default function Page() {
                   borderRadius: "12px",
                   fontWeight: "600",
                   color: "#ffffff",
-                  boxShadow: "0 1px 2px rgba(0,0,0,0.10)",
                 }}
               >
                 {item}
@@ -285,69 +309,39 @@ export default function Page() {
         </div>
       </section>
 
-      {/* PROGRAMS - WHITE */}
-      <section id="programs" style={{ padding: "95px 40px", backgroundColor: "#ffffff" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div style={{ color: "#2563eb", fontSize: "13px", fontWeight: "700", letterSpacing: "1px" }}>
-            EDUCATION AND PROFESSIONAL TRAINING
+      {/* EDUCATION AND PROFESSIONAL TRAINING */}
+      <section id="programs" style={{ padding: "88px 40px", backgroundColor: "#ffffff" }}>
+        <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
+          <div style={{ color: "#2563eb", fontSize: "13px", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase" }}>
+            Education and Professional Training
           </div>
 
-          <h2 style={{ fontSize: "36px", marginTop: "14px", marginBottom: 0 }}>
+          <h2 style={{ fontSize: "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
             Program pathways
           </h2>
 
           <div
             style={{
-              marginTop: "40px",
+              marginTop: "38px",
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
               gap: "20px",
             }}
           >
-            <div
-              style={{
-                border: "1px solid #e5e7eb",
-                padding: "28px",
-                borderRadius: "12px",
-                backgroundColor: "#f8fafc",
-              }}
-            >
-              <h3 style={{ marginTop: 0, marginBottom: "14px" }}>Accredited Credit-Hour Programs</h3>
-              <p style={{ lineHeight: "1.8", color: "#475569", margin: 0 }}>
-                Programs delivered under approved academic partnership frameworks, offering credit hours recognized
-                subject to the requirements and accreditation of the relevant partner institution.
-              </p>
-            </div>
-
-            <div
-              style={{
-                border: "1px solid #e5e7eb",
-                padding: "28px",
-                borderRadius: "12px",
-                backgroundColor: "#f8fafc",
-              }}
-            >
-              <h3 style={{ marginTop: 0, marginBottom: "14px" }}>Non-Credit Professional Programs</h3>
-              <p style={{ lineHeight: "1.8", color: "#475569", margin: 0 }}>
-                Executive education, short courses, and specialized professional training tailored to criminal justice
-                practitioners, institutions, and sector stakeholders.
-              </p>
-            </div>
-
-            <div
-              style={{
-                border: "1px solid #e5e7eb",
-                padding: "28px",
-                borderRadius: "12px",
-                backgroundColor: "#f8fafc",
-              }}
-            >
-              <h3 style={{ marginTop: 0, marginBottom: "14px" }}>Capacity Building and Specialized Training</h3>
-              <p style={{ lineHeight: "1.8", color: "#475569", margin: 0 }}>
-                Targeted programs supporting institutional development, regional cooperation, and operational readiness
-                across justice and enforcement sectors.
-              </p>
-            </div>
+            {programCards.map((card) => (
+              <div
+                key={card.title}
+                style={{
+                  border: "1px solid #e5e7eb",
+                  padding: "28px",
+                  borderRadius: "12px",
+                  backgroundColor: "#f8fafc",
+                }}
+              >
+                <h3 style={{ marginTop: 0, marginBottom: "14px", fontSize: "22px", lineHeight: "1.35" }}>{card.title}</h3>
+                <p style={{ lineHeight: "1.8", color: "#475569", margin: 0 }}>{card.text}</p>
+              </div>
+            ))}
           </div>
 
           <p style={{ marginTop: "28px", fontSize: "14px", color: "#64748b", lineHeight: "1.8" }}>
@@ -357,8 +351,9 @@ export default function Page() {
         </div>
       </section>
 
-      {/* NEWSLETTER / TALK TO US - SAME HERO COLOR SYSTEM */}
+      {/* NEWSLETTER / TALK TO US */}
       <section
+        id="newsletter"
         style={{
           background: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
           color: "#ffffff",
@@ -372,7 +367,7 @@ export default function Page() {
             inset: 0,
             backgroundImage: "url('/logo.png')",
             backgroundRepeat: "no-repeat",
-            backgroundSize: "700px",
+            backgroundSize: "760px",
             backgroundPosition: "left center",
             opacity: 0.08,
             pointerEvents: "none",
@@ -390,7 +385,7 @@ export default function Page() {
           }}
         >
           <div style={{ padding: "60px 40px" }}>
-            <h2 style={{ fontSize: "28px", margin: 0, marginBottom: "8px" }}>Newsletter</h2>
+            <h2 style={{ fontSize: "30px", margin: 0, marginBottom: "8px" }}>Newsletter</h2>
             <p style={{ fontSize: "16px", margin: 0, marginBottom: "22px", color: "#eaf4ff" }}>
               Receive updates straight into your mailbox.
             </p>
@@ -400,7 +395,7 @@ export default function Page() {
               placeholder="Email Address"
               style={{
                 width: "100%",
-                maxWidth: "420px",
+                maxWidth: "440px",
                 padding: "16px",
                 borderRadius: "6px",
                 border: "none",
@@ -412,7 +407,7 @@ export default function Page() {
             <button
               style={{
                 width: "100%",
-                maxWidth: "420px",
+                maxWidth: "440px",
                 padding: "14px",
                 borderRadius: "6px",
                 border: "none",
@@ -432,7 +427,7 @@ export default function Page() {
               borderLeft: "2px solid rgba(255,255,255,0.25)",
             }}
           >
-            <h2 style={{ fontSize: "28px", margin: 0, marginBottom: "8px" }}>Talk to us</h2>
+            <h2 style={{ fontSize: "30px", margin: 0, marginBottom: "8px" }}>Talk to us</h2>
             <p style={{ margin: 0, marginBottom: "24px", color: "#eaf4ff" }}>
               Connect with us on our socials and keep up to date.
             </p>
@@ -462,21 +457,21 @@ export default function Page() {
         </div>
       </section>
 
-      {/* CONTACT - MOVED TO VERY END */}
+      {/* CONTACT */}
       <section
         id="contact"
         style={{
-          padding: "95px 40px",
+          padding: "88px 40px",
           background: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
           color: "#ffffff",
         }}
       >
         <div style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "center" }}>
-          <div style={{ color: "#93c5fd", fontSize: "13px", fontWeight: "700", letterSpacing: "1px" }}>
-            CONTACT
+          <div style={{ color: "#93c5fd", fontSize: "13px", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase" }}>
+            Contact
           </div>
 
-          <h2 style={{ fontSize: "36px", marginTop: "14px", marginBottom: 0 }}>
+          <h2 style={{ fontSize: "38px", marginTop: "14px", marginBottom: 0 }}>
             Connect with CRCJ
           </h2>
 
@@ -488,11 +483,12 @@ export default function Page() {
       {/* FOOTER */}
       <footer
         style={{
-          padding: "25px",
+          padding: "24px",
           textAlign: "center",
           color: "#6b7280",
           fontSize: "14px",
           backgroundColor: "#ffffff",
+          borderTop: "1px solid #e5e7eb",
         }}
       >
         © 2026 Cairo Regional Center for Criminal Justice (CRCJ)
