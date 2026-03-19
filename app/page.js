@@ -1,10 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Page() {
   const [lang, setLang] = useState("en");
+  const [currentHero, setCurrentHero] = useState(0);
   const isAr = lang === "ar";
+
+  const heroImages = [
+    "/hero1.jpg",
+    "/hero2.jpg",
+    "/hero3.jpg",
+    "/hero4.jpg",
+    "/hero5.jpg",
+    "/hero6.jpg",
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHero((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
 
   const t = {
     en: {
@@ -21,7 +38,6 @@ export default function Page() {
       heroSubtitle: "A Regional Hub for Advancing Criminal Justice Across Egypt, Africa, and the Middle East",
       heroText:
         "CRCJ brings together education, training, and policy engagement to address evolving criminal justice challenges across Egypt, Africa, and the Middle East.",
-      heroArabic: "مركز إقليمي للنهوض بالعدالة الجنائية في مصر وأفريقيا والشرق الأوسط",
       heroBtn1: "Explore Programs",
       heroBtn2: "Learn More",
 
@@ -126,7 +142,6 @@ export default function Page() {
       heroSubtitle: "مركز إقليمي للنهوض بالعدالة الجنائية في مصر وأفريقيا والشرق الأوسط",
       heroText:
         "يجمع مركز CRCJ بين التعليم والتدريب والمشاركة في السياسات لمعالجة تحديات العدالة الجنائية المتطورة في جميع أنحاء مصر وأفريقيا والشرق الأوسط.",
-      heroArabic: "مركز إقليمي للنهوض بالعدالة الجنائية في مصر وأفريقيا والشرق الأوسط",
       heroBtn1: "استكشف البرامج",
       heroBtn2: "اعرف المزيد",
 
@@ -251,11 +266,12 @@ export default function Page() {
         direction: dir,
       }}
     >
+      {/* HEADER */}
       <header
         style={{
           backgroundColor: "#ffffff",
           borderBottom: "1px solid #e5e7eb",
-          padding: "16px 36px",
+          padding: "14px 20px",
           position: "sticky",
           top: 0,
           zIndex: 20,
@@ -268,16 +284,16 @@ export default function Page() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            gap: "20px",
+            gap: "16px",
             flexWrap: "wrap",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-            <img src="/logo.png" alt="CRCJ Logo" style={{ height: "58px" }} />
-            <div style={{ lineHeight: "1.25" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px", minWidth: 0 }}>
+            <img src="/logo.png" alt="CRCJ Logo" style={{ height: "52px", maxWidth: "100%" }} />
+            <div style={{ lineHeight: "1.25", minWidth: 0 }}>
               <div
                 style={{
-                  fontSize: "12px",
+                  fontSize: "11px",
                   letterSpacing: "2px",
                   color: "#2563eb",
                   fontWeight: "700",
@@ -286,14 +302,21 @@ export default function Page() {
               >
                 CRCJ
               </div>
-              <div style={{ fontSize: "18px", fontWeight: "700", color: "#0f172a" }}>
+              <div
+                style={{
+                  fontSize: "16px",
+                  fontWeight: "700",
+                  color: "#0f172a",
+                  wordBreak: "break-word",
+                }}
+              >
                 {isAr ? "المركز الإقليمي للعدالة الجنائية بالقاهرة" : "Cairo Regional Center for Criminal Justice"}
               </div>
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "18px", flexWrap: "wrap" }}>
-            <nav style={{ display: "flex", gap: "24px", fontSize: "14px", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "14px", flexWrap: "wrap" }}>
+            <nav style={{ display: "flex", gap: "16px", fontSize: "13px", flexWrap: "wrap" }}>
               <a href="#about" style={{ color: "#334155", textDecoration: "none" }}>{t.navAbout}</a>
               <a href="#areas" style={{ color: "#334155", textDecoration: "none" }}>{t.navAreas}</a>
               <a href="#publications" style={{ color: "#334155", textDecoration: "none" }}>{t.navPublications}</a>
@@ -336,15 +359,43 @@ export default function Page() {
         </div>
       </header>
 
+      {/* HERO WITH SLIDESHOW */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
-          color: "#ffffff",
-          padding: "120px 40px 110px 40px",
           position: "relative",
+          color: "#ffffff",
+          padding: "90px 20px 85px 20px",
           overflow: "hidden",
+          minHeight: "560px",
+          display: "flex",
+          alignItems: "center",
         }}
       >
+        {heroImages.map((img, index) => (
+          <div
+            key={img}
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${img})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: currentHero === index ? 1 : 0,
+              transition: "opacity 1.2s ease-in-out",
+              transform: "scale(1.02)",
+            }}
+          />
+        ))}
+
+        {/* BLUE OVERLAY - KEEPS YOUR CURRENT LOOK */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(135deg, rgba(15,23,42,0.86) 0%, rgba(29,78,216,0.82) 100%)",
+          }}
+        />
+
         <div
           style={{
             position: "absolute",
@@ -360,11 +411,12 @@ export default function Page() {
             maxWidth: "1240px",
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: "48px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "36px",
             alignItems: "center",
             position: "relative",
             zIndex: 1,
+            width: "100%",
           }}
         >
           <div>
@@ -375,7 +427,7 @@ export default function Page() {
                 borderRadius: "999px",
                 backgroundColor: "rgba(255,255,255,0.14)",
                 fontSize: "13px",
-                marginBottom: "24px",
+                marginBottom: "22px",
                 letterSpacing: "0.5px",
               }}
             >
@@ -395,15 +447,39 @@ export default function Page() {
               {t.heroTop}
             </div>
 
-            <h1 style={{ fontSize: "50px", lineHeight: "1.2", margin: 0, fontWeight: "700", maxWidth: "720px" }}>
+            <h1
+              style={{
+                fontSize: "clamp(32px, 6vw, 50px)",
+                lineHeight: "1.2",
+                margin: 0,
+                fontWeight: "700",
+                maxWidth: "720px",
+              }}
+            >
               {t.heroTitle}
             </h1>
 
-            <p style={{ marginTop: "22px", fontSize: "21px", lineHeight: "1.8", color: "#dbeafe", maxWidth: "760px" }}>
+            <p
+              style={{
+                marginTop: "22px",
+                fontSize: "clamp(18px, 3vw, 21px)",
+                lineHeight: "1.8",
+                color: "#dbeafe",
+                maxWidth: "760px",
+              }}
+            >
               {t.heroSubtitle}
             </p>
 
-            <p style={{ marginTop: "16px", fontSize: "17px", lineHeight: "1.8", color: "#dbeafe", maxWidth: "760px" }}>
+            <p
+              style={{
+                marginTop: "16px",
+                fontSize: "16px",
+                lineHeight: "1.8",
+                color: "#dbeafe",
+                maxWidth: "760px",
+              }}
+            >
               {t.heroText}
             </p>
 
@@ -443,7 +519,7 @@ export default function Page() {
               src="/logo.png"
               alt="CRCJ Logo"
               style={{
-                width: "430px",
+                width: "min(430px, 85%)",
                 maxWidth: "100%",
                 height: "auto",
                 filter: "drop-shadow(0 18px 35px rgba(0,0,0,0.25))",
@@ -453,7 +529,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="about" style={{ padding: "88px 40px", backgroundColor: "#ffffff" }}>
+      <section id="about" style={{ padding: "72px 20px", backgroundColor: "#ffffff" }}>
         <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
           <div
             style={{
@@ -467,7 +543,7 @@ export default function Page() {
             {t.aboutLabel}
           </div>
 
-          <h2 style={{ fontSize: "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
+          <h2 style={{ fontSize: "clamp(28px, 5vw, 38px)", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
             {t.aboutTitle}
           </h2>
 
@@ -477,7 +553,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section style={{ padding: "0 40px 88px 40px", backgroundColor: "#ffffff" }}>
+      <section style={{ padding: "0 20px 72px 20px", backgroundColor: "#ffffff" }}>
         <div
           style={{
             maxWidth: "1120px",
@@ -515,7 +591,7 @@ export default function Page() {
         id="areas"
         style={{
           background: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
-          padding: "88px 40px",
+          padding: "72px 20px",
           color: "#ffffff",
           position: "relative",
           overflow: "hidden",
@@ -545,7 +621,7 @@ export default function Page() {
               {t.areasLabel}
             </div>
 
-            <h2 style={{ fontSize: "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
+            <h2 style={{ fontSize: "clamp(28px, 5vw, 38px)", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
               {t.areasTitle}
             </h2>
 
@@ -581,7 +657,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="publications" style={{ padding: "88px 40px", backgroundColor: "#ffffff" }}>
+      <section id="publications" style={{ padding: "72px 20px", backgroundColor: "#ffffff" }}>
         <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
           <div
             style={{
@@ -595,7 +671,7 @@ export default function Page() {
             {t.pubLabel}
           </div>
 
-          <h2 style={{ fontSize: "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
+          <h2 style={{ fontSize: "clamp(28px, 5vw, 38px)", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
             {t.pubTitle}
           </h2>
 
@@ -629,7 +705,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="programs" style={{ padding: "88px 40px", backgroundColor: "#ffffff" }}>
+      <section id="programs" style={{ padding: "72px 20px", backgroundColor: "#ffffff" }}>
         <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
           <div
             style={{
@@ -643,7 +719,7 @@ export default function Page() {
             {t.progLabel}
           </div>
 
-          <h2 style={{ fontSize: "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
+          <h2 style={{ fontSize: "clamp(28px, 5vw, 38px)", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
             {t.progTitle}
           </h2>
 
@@ -681,6 +757,7 @@ export default function Page() {
         </div>
       </section>
 
+      {/* NEWSLETTER WITH ABSTRACT BACKGROUND, NO REPEATED LOGO */}
       <section
         id="newsletter"
         style={{
@@ -694,11 +771,8 @@ export default function Page() {
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: "url('/logo.png')",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "760px",
-            backgroundPosition: "left center",
-            opacity: 0.08,
+            background:
+              "radial-gradient(circle at 15% 20%, rgba(255,255,255,0.10), transparent 18%), radial-gradient(circle at 85% 30%, rgba(255,255,255,0.08), transparent 16%), radial-gradient(circle at 25% 85%, rgba(255,255,255,0.07), transparent 18%)",
             pointerEvents: "none",
           }}
         />
@@ -713,7 +787,7 @@ export default function Page() {
             zIndex: 1,
           }}
         >
-          <div style={{ padding: "60px 40px" }}>
+          <div style={{ padding: "60px 20px" }}>
             <h2 style={{ fontSize: "30px", margin: 0, marginBottom: "8px" }}>{t.newsTitle}</h2>
             <p style={{ fontSize: "16px", margin: 0, marginBottom: "22px", color: "#eaf4ff" }}>
               {t.newsText}
@@ -752,7 +826,7 @@ export default function Page() {
 
           <div
             style={{
-              padding: "60px 40px",
+              padding: "60px 20px",
               borderLeft: isAr ? "none" : "2px solid rgba(255,255,255,0.25)",
               borderRight: isAr ? "2px solid rgba(255,255,255,0.25)" : "none",
             }}
@@ -790,7 +864,7 @@ export default function Page() {
       <section
         id="contact"
         style={{
-          padding: "88px 40px",
+          padding: "72px 20px",
           background: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
           color: "#ffffff",
         }}
@@ -808,7 +882,7 @@ export default function Page() {
             {t.contactLabel}
           </div>
 
-          <h2 style={{ fontSize: "38px", marginTop: "14px", marginBottom: 0 }}>
+          <h2 style={{ fontSize: "clamp(28px, 5vw, 38px)", marginTop: "14px", marginBottom: 0 }}>
             {t.contactTitle}
           </h2>
 
@@ -823,7 +897,7 @@ export default function Page() {
 
       <footer
         style={{
-          padding: "24px",
+          padding: "24px 20px",
           textAlign: "center",
           color: "#6b7280",
           fontSize: "14px",
