@@ -18,6 +18,7 @@ function SocialIcon({ href = "#", label, children }) {
         borderRadius: "10px",
         textDecoration: "none",
         boxShadow: "0 4px 14px rgba(15,23,42,0.12)",
+        flexShrink: 0,
       }}
     >
       {children}
@@ -28,6 +29,7 @@ function SocialIcon({ href = "#", label, children }) {
 export default function Page() {
   const [lang, setLang] = useState("en");
   const [currentHero, setCurrentHero] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const isAr = lang === "ar";
 
   const heroImages = [
@@ -38,6 +40,13 @@ export default function Page() {
     "/hero5.jpg",
     "/hero6.jpg",
   ];
+
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth < 768);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -291,6 +300,7 @@ export default function Page() {
   ];
 
   const dir = isAr ? "rtl" : "ltr";
+  const sectionPad = isMobile ? "56px 20px" : "72px 20px";
 
   return (
     <main
@@ -306,7 +316,7 @@ export default function Page() {
         style={{
           backgroundColor: "#ffffff",
           borderBottom: "1px solid #e5e7eb",
-          padding: "14px 20px",
+          padding: isMobile ? "12px 16px" : "14px 20px",
           position: "sticky",
           top: 0,
           zIndex: 20,
@@ -317,14 +327,14 @@ export default function Page() {
             maxWidth: "1240px",
             margin: "0 auto",
             display: "flex",
+            flexDirection: isMobile ? "column" : "row",
             justifyContent: "space-between",
-            alignItems: "center",
-            gap: "16px",
-            flexWrap: "wrap",
+            alignItems: isMobile ? "stretch" : "center",
+            gap: isMobile ? "12px" : "16px",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minWidth: 0 }}>
-            <img src="/logo.png" alt="CRCJ Logo" style={{ height: "52px", maxWidth: "100%" }} />
+            <img src="/logo.png" alt="CRCJ Logo" style={{ height: isMobile ? "46px" : "52px", maxWidth: "100%" }} />
             <div style={{ lineHeight: "1.25", minWidth: 0 }}>
               <div
                 style={{
@@ -339,7 +349,7 @@ export default function Page() {
               </div>
               <div
                 style={{
-                  fontSize: "16px",
+                  fontSize: isMobile ? "14px" : "16px",
                   fontWeight: "700",
                   color: "#0f172a",
                   wordBreak: "break-word",
@@ -350,8 +360,16 @@ export default function Page() {
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "14px", flexWrap: "wrap" }}>
-            <nav style={{ display: "flex", gap: "16px", fontSize: "13px", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <nav
+              style={{
+                display: "flex",
+                gap: isMobile ? "12px" : "16px",
+                fontSize: isMobile ? "12px" : "13px",
+                flexWrap: "wrap",
+                justifyContent: isMobile ? "flex-start" : "flex-end",
+              }}
+            >
               <a href="#about" style={{ color: "#334155", textDecoration: "none" }}>{t.navAbout}</a>
               <a href="#areas" style={{ color: "#334155", textDecoration: "none" }}>{t.navAreas}</a>
               <a href="#publications" style={{ color: "#334155", textDecoration: "none" }}>{t.navPublications}</a>
@@ -360,7 +378,7 @@ export default function Page() {
               <a href="#contact" style={{ color: "#334155", textDecoration: "none" }}>{t.navContact}</a>
             </nav>
 
-            <div style={{ display: "flex", gap: "8px" }}>
+            <div style={{ display: "flex", gap: "8px", justifyContent: isMobile ? "flex-start" : "flex-end" }}>
               <button
                 onClick={() => setLang("en")}
                 style={{
@@ -398,9 +416,9 @@ export default function Page() {
         style={{
           position: "relative",
           color: "#ffffff",
-          padding: "90px 20px 85px 20px",
+          padding: isMobile ? "72px 16px 78px 16px" : "90px 20px 85px 20px",
           overflow: "hidden",
-          minHeight: "560px",
+          minHeight: isMobile ? "520px" : "560px",
           display: "flex",
           alignItems: "center",
         }}
@@ -439,24 +457,23 @@ export default function Page() {
           }}
         />
 
-        {/* Hero Controls */}
         <button
           onClick={goPrev}
           aria-label="Previous slide"
           style={{
             position: "absolute",
-            left: "16px",
+            left: isMobile ? "10px" : "16px",
             top: "50%",
             transform: "translateY(-50%)",
             zIndex: 2,
-            width: "42px",
-            height: "42px",
+            width: isMobile ? "36px" : "42px",
+            height: isMobile ? "36px" : "42px",
             borderRadius: "999px",
             border: "1px solid rgba(255,255,255,0.3)",
             background: "rgba(255,255,255,0.14)",
             color: "#ffffff",
             cursor: "pointer",
-            fontSize: "20px",
+            fontSize: isMobile ? "18px" : "20px",
             fontWeight: "700",
           }}
         >
@@ -468,18 +485,18 @@ export default function Page() {
           aria-label="Next slide"
           style={{
             position: "absolute",
-            right: "16px",
+            right: isMobile ? "10px" : "16px",
             top: "50%",
             transform: "translateY(-50%)",
             zIndex: 2,
-            width: "42px",
-            height: "42px",
+            width: isMobile ? "36px" : "42px",
+            height: isMobile ? "36px" : "42px",
             borderRadius: "999px",
             border: "1px solid rgba(255,255,255,0.3)",
             background: "rgba(255,255,255,0.14)",
             color: "#ffffff",
             cursor: "pointer",
-            fontSize: "20px",
+            fontSize: isMobile ? "18px" : "20px",
             fontWeight: "700",
           }}
         >
@@ -499,14 +516,14 @@ export default function Page() {
             width: "100%",
           }}
         >
-          <div style={{ maxWidth: "780px" }}>
+          <div style={{ maxWidth: isMobile ? "100%" : "780px" }}>
             <div
               style={{
                 display: "inline-block",
                 padding: "8px 14px",
                 borderRadius: "999px",
                 backgroundColor: "rgba(255,255,255,0.14)",
-                fontSize: "13px",
+                fontSize: isMobile ? "12px" : "13px",
                 marginBottom: "22px",
                 letterSpacing: "0.5px",
               }}
@@ -529,7 +546,7 @@ export default function Page() {
 
             <h1
               style={{
-                fontSize: "clamp(32px, 6vw, 50px)",
+                fontSize: isMobile ? "34px" : "50px",
                 lineHeight: "1.2",
                 margin: 0,
                 fontWeight: "700",
@@ -542,7 +559,7 @@ export default function Page() {
             <p
               style={{
                 marginTop: "22px",
-                fontSize: "clamp(18px, 3vw, 21px)",
+                fontSize: isMobile ? "18px" : "21px",
                 lineHeight: "1.8",
                 color: "#dbeafe",
                 maxWidth: "760px",
@@ -554,7 +571,7 @@ export default function Page() {
             <p
               style={{
                 marginTop: "16px",
-                fontSize: "16px",
+                fontSize: isMobile ? "15px" : "16px",
                 lineHeight: "1.8",
                 color: "#dbeafe",
                 maxWidth: "760px",
@@ -595,7 +612,6 @@ export default function Page() {
           </div>
         </div>
 
-        {/* Dots */}
         <div
           style={{
             position: "absolute",
@@ -626,7 +642,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="about" style={{ padding: "72px 20px", backgroundColor: "#ffffff" }}>
+      <section id="about" style={{ padding: sectionPad, backgroundColor: "#ffffff" }}>
         <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
           <div
             style={{
@@ -640,17 +656,17 @@ export default function Page() {
             {t.aboutLabel}
           </div>
 
-          <h2 style={{ fontSize: "clamp(28px, 5vw, 38px)", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
+          <h2 style={{ fontSize: isMobile ? "30px" : "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
             {t.aboutTitle}
           </h2>
 
-          <p style={{ marginTop: "24px", fontSize: "18px", lineHeight: "1.9", color: "#475569", maxWidth: "940px" }}>
+          <p style={{ marginTop: "24px", fontSize: isMobile ? "16px" : "18px", lineHeight: "1.9", color: "#475569", maxWidth: "940px" }}>
             {t.aboutText}
           </p>
         </div>
       </section>
 
-      <section style={{ padding: "0 20px 72px 20px", backgroundColor: "#ffffff" }}>
+      <section style={{ padding: isMobile ? "0 20px 56px 20px" : "0 20px 72px 20px", backgroundColor: "#ffffff" }}>
         <div
           style={{
             maxWidth: "1120px",
@@ -672,7 +688,7 @@ export default function Page() {
                 backgroundColor: "#f8fafc",
                 border: "1px solid #e5e7eb",
                 borderRadius: "12px",
-                padding: "24px",
+                padding: isMobile ? "20px" : "24px",
               }}
             >
               <div style={{ fontSize: "26px", fontWeight: "700", color: "#0f172a" }}>{item[0]}</div>
@@ -688,7 +704,7 @@ export default function Page() {
         id="areas"
         style={{
           background: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
-          padding: "72px 20px",
+          padding: sectionPad,
           color: "#ffffff",
           position: "relative",
           overflow: "hidden",
@@ -718,11 +734,11 @@ export default function Page() {
               {t.areasLabel}
             </div>
 
-            <h2 style={{ fontSize: "clamp(28px, 5vw, 38px)", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
+            <h2 style={{ fontSize: isMobile ? "30px" : "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
               {t.areasTitle}
             </h2>
 
-            <p style={{ marginTop: "18px", maxWidth: "860px", marginInline: "auto", color: "#dbeafe", lineHeight: "1.8", fontSize: "17px" }}>
+            <p style={{ marginTop: "18px", maxWidth: "860px", marginInline: "auto", color: "#dbeafe", lineHeight: "1.8", fontSize: isMobile ? "16px" : "17px" }}>
               {t.areasIntro}
             </p>
           </div>
@@ -740,13 +756,13 @@ export default function Page() {
                 key={item.title}
                 style={{
                   backgroundColor: "rgba(255,255,255,0.08)",
-                  padding: "24px",
+                  padding: isMobile ? "20px" : "24px",
                   border: "1px solid rgba(255,255,255,0.15)",
                   borderRadius: "12px",
                   color: "#ffffff",
                 }}
               >
-                <h3 style={{ marginTop: 0, marginBottom: "12px", fontSize: "20px", lineHeight: "1.35" }}>{item.title}</h3>
+                <h3 style={{ marginTop: 0, marginBottom: "12px", fontSize: isMobile ? "18px" : "20px", lineHeight: "1.35" }}>{item.title}</h3>
                 <p style={{ margin: 0, color: "#dbeafe", lineHeight: "1.8", fontSize: "15px" }}>{item.text}</p>
               </div>
             ))}
@@ -754,7 +770,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="publications" style={{ padding: "72px 20px", backgroundColor: "#ffffff" }}>
+      <section id="publications" style={{ padding: sectionPad, backgroundColor: "#ffffff" }}>
         <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
           <div
             style={{
@@ -768,11 +784,11 @@ export default function Page() {
             {t.pubLabel}
           </div>
 
-          <h2 style={{ fontSize: "clamp(28px, 5vw, 38px)", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
+          <h2 style={{ fontSize: isMobile ? "30px" : "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
             {t.pubTitle}
           </h2>
 
-          <p style={{ marginTop: "20px", fontSize: "17px", lineHeight: "1.8", color: "#475569", maxWidth: "940px" }}>
+          <p style={{ marginTop: "20px", fontSize: isMobile ? "16px" : "17px", lineHeight: "1.8", color: "#475569", maxWidth: "940px" }}>
             {t.pubIntro}
           </p>
 
@@ -789,12 +805,12 @@ export default function Page() {
                 key={item.title}
                 style={{
                   border: "1px solid #e5e7eb",
-                  padding: "28px",
+                  padding: isMobile ? "22px" : "28px",
                   borderRadius: "12px",
                   backgroundColor: "#f8fafc",
                 }}
               >
-                <h3 style={{ marginTop: 0, marginBottom: "14px", fontSize: "22px", lineHeight: "1.35" }}>{item.title}</h3>
+                <h3 style={{ marginTop: 0, marginBottom: "14px", fontSize: isMobile ? "20px" : "22px", lineHeight: "1.35" }}>{item.title}</h3>
                 <p style={{ margin: 0, lineHeight: "1.8", color: "#475569" }}>{item.text}</p>
               </div>
             ))}
@@ -802,7 +818,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="programs" style={{ padding: "72px 20px", backgroundColor: "#ffffff" }}>
+      <section id="programs" style={{ padding: sectionPad, backgroundColor: "#ffffff" }}>
         <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
           <div
             style={{
@@ -816,11 +832,11 @@ export default function Page() {
             {t.progLabel}
           </div>
 
-          <h2 style={{ fontSize: "clamp(28px, 5vw, 38px)", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
+          <h2 style={{ fontSize: isMobile ? "30px" : "38px", marginTop: "14px", marginBottom: 0, lineHeight: "1.25" }}>
             {t.progTitle}
           </h2>
 
-          <p style={{ marginTop: "20px", fontSize: "17px", lineHeight: "1.8", color: "#475569", maxWidth: "940px" }}>
+          <p style={{ marginTop: "20px", fontSize: isMobile ? "16px" : "17px", lineHeight: "1.8", color: "#475569", maxWidth: "940px" }}>
             {t.progIntro}
           </p>
 
@@ -837,12 +853,12 @@ export default function Page() {
                 key={card.title}
                 style={{
                   border: "1px solid #e5e7eb",
-                  padding: "28px",
+                  padding: isMobile ? "22px" : "28px",
                   borderRadius: "12px",
                   backgroundColor: "#f8fafc",
                 }}
               >
-                <h3 style={{ marginTop: 0, marginBottom: "14px", fontSize: "22px", lineHeight: "1.35" }}>{card.title}</h3>
+                <h3 style={{ marginTop: 0, marginBottom: "14px", fontSize: isMobile ? "20px" : "22px", lineHeight: "1.35" }}>{card.title}</h3>
                 <p style={{ lineHeight: "1.8", color: "#475569", margin: 0 }}>{card.text}</p>
               </div>
             ))}
@@ -883,8 +899,8 @@ export default function Page() {
             zIndex: 1,
           }}
         >
-          <div style={{ padding: "60px 20px" }}>
-            <h2 style={{ fontSize: "30px", margin: 0, marginBottom: "8px" }}>{t.newsTitle}</h2>
+          <div style={{ padding: isMobile ? "44px 20px" : "60px 20px" }}>
+            <h2 style={{ fontSize: isMobile ? "28px" : "30px", margin: 0, marginBottom: "8px" }}>{t.newsTitle}</h2>
             <p style={{ fontSize: "16px", margin: 0, marginBottom: "22px", color: "#eaf4ff" }}>
               {t.newsText}
             </p>
@@ -922,12 +938,13 @@ export default function Page() {
 
           <div
             style={{
-              padding: "60px 20px",
-              borderLeft: isAr ? "none" : "2px solid rgba(255,255,255,0.25)",
-              borderRight: isAr ? "2px solid rgba(255,255,255,0.25)" : "none",
+              padding: isMobile ? "44px 20px" : "60px 20px",
+              borderLeft: !isMobile && !isAr ? "2px solid rgba(255,255,255,0.25)" : "none",
+              borderRight: !isMobile && isAr ? "2px solid rgba(255,255,255,0.25)" : "none",
+              borderTop: isMobile ? "2px solid rgba(255,255,255,0.20)" : "none",
             }}
           >
-            <h2 style={{ fontSize: "30px", margin: 0, marginBottom: "8px" }}>{t.talkTitle}</h2>
+            <h2 style={{ fontSize: isMobile ? "28px" : "30px", margin: 0, marginBottom: "8px" }}>{t.talkTitle}</h2>
             <p style={{ margin: 0, marginBottom: "24px", color: "#eaf4ff" }}>
               {t.talkText}
             </p>
@@ -964,7 +981,7 @@ export default function Page() {
       <section
         id="contact"
         style={{
-          padding: "72px 20px",
+          padding: sectionPad,
           background: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%)",
           color: "#ffffff",
         }}
@@ -982,16 +999,16 @@ export default function Page() {
             {t.contactLabel}
           </div>
 
-          <h2 style={{ fontSize: "clamp(28px, 5vw, 38px)", marginTop: "14px", marginBottom: 0 }}>
+          <h2 style={{ fontSize: isMobile ? "30px" : "38px", marginTop: "14px", marginBottom: 0 }}>
             {t.contactTitle}
           </h2>
 
-          <p style={{ marginTop: "20px", fontSize: "18px", color: "#cbd5e1", lineHeight: "1.8" }}>
+          <p style={{ marginTop: "20px", fontSize: isMobile ? "16px" : "18px", color: "#cbd5e1", lineHeight: "1.8" }}>
             {t.contactText}
           </p>
 
-          <p style={{ fontSize: "18px", color: "#cbd5e1", marginTop: "18px" }}>{t.contactEmail}</p>
-          <p style={{ fontSize: "18px", color: "#cbd5e1" }}>{t.contactLocation}</p>
+          <p style={{ fontSize: isMobile ? "16px" : "18px", color: "#cbd5e1", marginTop: "18px" }}>{t.contactEmail}</p>
+          <p style={{ fontSize: isMobile ? "16px" : "18px", color: "#cbd5e1" }}>{t.contactLocation}</p>
         </div>
       </section>
 
