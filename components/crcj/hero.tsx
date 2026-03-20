@@ -37,7 +37,7 @@ export function Hero({ lang }: HeroProps) {
   }, [goNext]);
 
   return (
-    <section className="relative flex min-h-[600px] items-center overflow-hidden bg-blue-700 py-20 text-white lg:min-h-[680px] lg:py-24">
+    <section className="relative flex min-h-[600px] items-center overflow-hidden bg-[#1E3A8A] py-20 text-white lg:min-h-[680px] lg:py-24">
       {/* Background Images */}
       {heroImages.map((img, index) => (
         <div
@@ -51,7 +51,7 @@ export function Hero({ lang }: HeroProps) {
       ))}
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-700/95 via-blue-700/90 to-blue-700/85" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/95 via-[#1E3A8A]/90 to-[#2563EB]/85" />
 
       {/* Navigation Arrows */}
       <button
@@ -74,42 +74,52 @@ export function Hero({ lang }: HeroProps) {
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 lg:px-6">
         <div className="max-w-3xl">
           {/* Badge */}
-          <div className={cn(
-            "mb-6 inline-block rounded-full bg-white/10 px-4 py-2 text-xs font-medium tracking-wide text-white backdrop-blur-sm lg:text-sm",
-            isAr && "font-[var(--font-noto-arabic)]"
-          )}>
+          <div
+            className={cn(
+              "mb-6 inline-block rounded-full bg-white/10 px-4 py-2 text-xs font-medium tracking-wide text-white backdrop-blur-sm lg:text-sm",
+              isAr && "font-[var(--font-noto-arabic)]"
+            )}
+          >
             {t.heroLabel}
           </div>
 
           {/* Location */}
-          <p className={cn(
-            "mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white/70",
-            isAr && "font-[var(--font-noto-arabic)]"
-          )}>
+          <p
+            className={cn(
+              "mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white/70",
+              isAr && "font-[var(--font-noto-arabic)]"
+            )}
+          >
             {t.heroTop}
           </p>
 
           {/* Title */}
-          <h1 className={cn(
-            "text-3xl font-bold leading-tight text-balance lg:text-5xl xl:text-6xl",
-            isAr && "font-[var(--font-noto-arabic)]"
-          )}>
+          <h1
+            className={cn(
+              "text-3xl font-bold leading-tight text-balance lg:text-5xl xl:text-6xl",
+              isAr && "font-[var(--font-noto-arabic)]"
+            )}
+          >
             {t.heroTitle}
           </h1>
 
           {/* Subtitle */}
-          <p className={cn(
-            "mt-6 text-lg leading-relaxed text-white/90 lg:text-xl",
-            isAr && "font-[var(--font-noto-arabic)]"
-          )}>
+          <p
+            className={cn(
+              "mt-6 text-lg leading-relaxed text-white/90 lg:text-xl",
+              isAr && "font-[var(--font-noto-arabic)]"
+            )}
+          >
             {t.heroSubtitle}
           </p>
 
           {/* Description */}
-          <p className={cn(
-            "mt-4 text-base leading-relaxed text-white/75 lg:text-lg",
-            isAr && "font-[var(--font-noto-arabic)]"
-          )}>
+          <p
+            className={cn(
+              "mt-4 text-base leading-relaxed text-white/75 lg:text-lg",
+              isAr && "font-[var(--font-noto-arabic)]"
+            )}
+          >
             {t.heroText}
           </p>
 
@@ -118,7 +128,7 @@ export function Hero({ lang }: HeroProps) {
             <a
               href="#programs"
               className={cn(
-                "rounded-md bg-background px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-background/90",
+                "rounded-md bg-white px-6 py-3 text-sm font-semibold text-[#1E3A8A] transition-colors hover:bg-white/90",
                 isAr && "font-[var(--font-noto-arabic)]"
               )}
             >
