@@ -31,7 +31,7 @@ export function FocusAreas({ lang }: FocusAreasProps) {
   return (
     <section
       id="areas"
-      className="relative isolate overflow-hidden bg-blue-700 py-16 text-white lg:py-24"
+      className="relative isolate overflow-hidden bg-[#1E3A8A] py-16 text-white lg:py-24"
     >
       {/* Subtle Pattern */}
       <div className="pointer-events-none absolute inset-0 opacity-5">
@@ -45,6 +45,9 @@ export function FocusAreas({ lang }: FocusAreasProps) {
         />
       </div>
 
+      {/* Gradient overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/95 via-[#1E3A8A]/90 to-[#2563EB]/85" />
+
       <div className="relative z-10 mx-auto max-w-6xl px-4 lg:px-6">
         {/* Section Header */}
         <div className="mb-12 text-center">
@@ -56,6 +59,7 @@ export function FocusAreas({ lang }: FocusAreasProps) {
           >
             {t.areasLabel}
           </span>
+
           <h2
             className={cn(
               "mt-3 text-2xl font-bold leading-tight lg:text-4xl",
@@ -64,6 +68,7 @@ export function FocusAreas({ lang }: FocusAreasProps) {
           >
             {t.areasTitle}
           </h2>
+
           <p
             className={cn(
               "mx-auto mt-4 max-w-3xl text-base leading-relaxed text-white/80 lg:text-lg",
@@ -83,9 +88,10 @@ export function FocusAreas({ lang }: FocusAreasProps) {
                 key={item.title}
                 className="group rounded-lg border border-white/20 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-white/40 hover:bg-white/10"
               >
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-white/10 text-white transition-colors group-hover:bg-white group-hover:text-blue-700">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-white/10 text-white transition-colors group-hover:bg-white group-hover:text-[#1E3A8A]">
                   <Icon className="h-5 w-5" />
                 </div>
+
                 <h3
                   className={cn(
                     "text-lg font-semibold leading-tight lg:text-xl",
@@ -94,6 +100,7 @@ export function FocusAreas({ lang }: FocusAreasProps) {
                 >
                   {item.title}
                 </h3>
+
                 <p
                   className={cn(
                     "mt-3 text-sm leading-relaxed text-white/75",
