@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { translations, type Language } from "@/lib/translations";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import { useState } from "react";
 
 interface HeaderProps {
@@ -15,6 +15,7 @@ export function Header({ lang, setLang }: HeaderProps) {
   const t = translations[lang];
   const isAr = lang === "ar";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [search, setSearch] = useState("");
 
   const navLinks = [
     { href: "#about", label: t.navAbout },
@@ -27,7 +28,7 @@ export function Header({ lang, setLang }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-6">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 lg:px-6">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3">
           <Image
@@ -54,8 +55,22 @@ export function Header({ lang, setLang }: HeaderProps) {
           </div>
         </a>
 
-        {/* ❌ Desktop Navigation DISABLED FOR TEST */}
-        <nav className="hidden"></nav>
+        {/* Desktop Search */}
+        <div className="hidden lg:flex flex-1 justify-center">
+          <div className="flex w-full max-w-xs items-center rounded-md border border-border bg-white px-3 py-2">
+            <Search className="h-4 w-4 text-muted-foreground" />
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={isAr ? "ابحث..." : "Search..."}
+              className={cn(
+                "ml-2 w-full bg-transparent text-sm text-foreground outline-none",
+                isAr && "mr-2 ml-0 font-[var(--font-noto-arabic)]"
+              )}
+            />
+          </div>
+        </div>
 
         {/* Language Switch + Mobile Menu */}
         <div className="flex items-center gap-3">
@@ -86,7 +101,6 @@ export function Header({ lang, setLang }: HeaderProps) {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -98,9 +112,22 @@ export function Header({ lang, setLang }: HeaderProps) {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <nav className="border-t border-border bg-background px-4 py-4 lg:hidden">
+          <div className="mb-4 flex items-center rounded-md border border-border bg-white px-3 py-2">
+            <Search className="h-4 w-4 text-muted-foreground" />
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={isAr ? "ابحث..." : "Search..."}
+              className={cn(
+                "ml-2 w-full bg-transparent text-sm text-foreground outline-none",
+                isAr && "mr-2 ml-0 font-[var(--font-noto-arabic)]"
+              )}
+            />
+          </div>
+
           <div className="flex flex-col gap-3">
             {navLinks.map((link) => (
               <a
