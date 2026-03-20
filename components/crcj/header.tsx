@@ -29,7 +29,7 @@ export function Header({ lang, setLang }: HeaderProps) {
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-6">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3">
+        <a href="#" className="flex shrink-0 items-center gap-3">
           <Image
             src="/logo.png"
             alt="CRCJ Logo"
@@ -41,17 +41,21 @@ export function Header({ lang, setLang }: HeaderProps) {
             <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-700">
               CRCJ
             </div>
-            <div className={cn(
-              "text-sm font-semibold text-foreground lg:text-base",
-              isAr && "font-[var(--font-noto-arabic)]"
-            )}>
-              {isAr ? "مركز القاهرة الإقليمي للعدالة الجنائية" : "Cairo Regional Center for Criminal Justice"}
+            <div
+              className={cn(
+                "text-sm font-semibold text-foreground lg:text-base",
+                isAr && "font-[var(--font-noto-arabic)]"
+              )}
+            >
+              {isAr
+                ? "مركز القاهرة الإقليمي للعدالة الجنائية"
+                : "Cairo Regional Center for Criminal Justice"}
             </div>
           </div>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden min-w-0 items-center gap-6 lg:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -67,8 +71,8 @@ export function Header({ lang, setLang }: HeaderProps) {
         </nav>
 
         {/* Language Switch + Mobile Menu */}
-        <div className="flex items-center gap-3">
-          <div className="flex overflow-hidden rounded-md border border-border">
+        <div className="relative z-10 flex shrink-0 items-center gap-3">
+          <div className="relative z-10 flex overflow-hidden rounded-md border border-border">
             <button
               onClick={() => setLang("en")}
               className={cn(
