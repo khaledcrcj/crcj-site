@@ -99,6 +99,7 @@ export function Header({ lang, setLang }: HeaderProps) {
             </button>
           </div>
 
+          {/* Mobile Menu Button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
