@@ -21,6 +21,10 @@ export default function Page() {
       dir={isAr ? "rtl" : "ltr"}
       className={isAr ? "font-[var(--font-noto-arabic)]" : "font-sans"}
     >
+      <div className="fixed bottom-4 right-4 z-[9999] rounded-md bg-black px-3 py-2 text-sm font-semibold text-white">
+        Current language: {lang}
+      </div>
+
       <Header lang={lang} setLang={setLang} />
       <Hero lang={lang} />
       <About lang={lang} />
