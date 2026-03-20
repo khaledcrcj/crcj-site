@@ -60,16 +60,11 @@ export function Header({ lang, setLang }: HeaderProps) {
     }
   };
 
-  const changeLang = (value: Language) => {
-    setLang(value);
-    setMobileMenuOpen(false);
-  };
-
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 lg:px-6">
-        {/* Logo */}
-        <a href="#" className="flex min-w-0 shrink-0 items-center gap-3">
+      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-3 lg:px-6">
+        {/* Left: Logo */}
+        <a href="#" className="flex min-w-0 items-center gap-3">
           <Image
             src="/logo.png"
             alt="CRCJ Logo"
@@ -94,10 +89,10 @@ export function Header({ lang, setLang }: HeaderProps) {
           </div>
         </a>
 
-        {/* Search */}
-        <div className="hidden flex-1 justify-center md:flex">
+        {/* Center: Search */}
+        <div className="hidden min-w-0 justify-center md:flex">
           <div className="flex w-full max-w-xs items-center rounded-md border border-border bg-white px-3 py-2">
-            <Search className="h-4 w-4 text-muted-foreground" />
+            <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
             <input
               type="text"
               value={search}
@@ -105,20 +100,30 @@ export function Header({ lang, setLang }: HeaderProps) {
               onKeyDown={handleSearchKeyDown}
               placeholder={isAr ? "ابحث..." : "Search..."}
               className={cn(
-                "ml-2 w-full bg-transparent text-sm text-foreground outline-none",
+                "ml-2 w-full min-w-0 bg-transparent text-sm text-foreground outline-none",
                 isAr && "mr-2 ml-0 font-[var(--font-noto-arabic)]"
               )}
             />
           </div>
         </div>
 
-        {/* Language + Menu */}
-        <div className="flex shrink-0 items-center gap-2">
-          <div className="relative z-[60] flex overflow-hidden rounded-md border border-border bg-white">
+        {/* Right: Controls */}
+        <div className="relative z-[100] flex shrink-0 items-center justify-end gap-2">
+          <button
+            type="button"
+            onClick={runSearch}
+            className={cn(
+              "hidden rounded-md bg-[#1E3A8A] px-4 py-2 text-sm font-semibold text-white md:block",
+              isAr && "font-[var(--font-noto-arabic)]"
+            )}
+          >
+            {isAr ? "بحث" : "Search"}
+          </button>
+
+          <div className="flex overflow-hidden rounded-md border border-border bg-white">
             <button
               type="button"
-              onMouseDown={() => changeLang("en")}
-              onClick={() => changeLang("en")}
+              onClick={() => setLang("en")}
               className={cn(
                 "px-3 py-1.5 text-sm font-semibold transition-colors",
                 lang === "en"
@@ -130,8 +135,7 @@ export function Header({ lang, setLang }: HeaderProps) {
             </button>
             <button
               type="button"
-              onMouseDown={() => changeLang("ar")}
-              onClick={() => changeLang("ar")}
+              onClick={() => setLang("ar")}
               className={cn(
                 "px-3 py-1.5 text-sm font-semibold transition-colors",
                 lang === "ar"
@@ -146,7 +150,7 @@ export function Header({ lang, setLang }: HeaderProps) {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-md border border-border"
+            className="flex h-10 w-10 items-center justify-center rounded-md border border-border bg-white"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
