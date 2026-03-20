@@ -61,105 +61,107 @@ export function Header({ lang, setLang }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-3 lg:px-6">
-        {/* Left: Logo */}
-        <a href="#" className="flex min-w-0 items-center gap-3">
-          <Image
-            src="/logo.png"
-            alt="CRCJ Logo"
-            width={44}
-            height={44}
-            className="h-10 w-auto"
-          />
-          <div className="hidden min-w-0 md:block">
-            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1E3A8A]">
-              CRCJ
-            </div>
-            <div
-              className={cn(
-                "max-w-[260px] truncate text-sm font-semibold text-foreground xl:max-w-none",
-                isAr && "font-[var(--font-noto-arabic)]"
-              )}
-            >
-              {isAr
-                ? "مركز القاهرة الإقليمي للعدالة الجنائية"
-                : "Cairo Regional Center for Criminal Justice"}
-            </div>
-          </div>
-        </a>
-
-        {/* Center: Search */}
-        <div className="hidden min-w-0 justify-center md:flex">
-          <div className="flex w-full max-w-xs items-center rounded-md border border-border bg-white px-3 py-2">
-            <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              onKeyDown={handleSearchKeyDown}
-              placeholder={isAr ? "ابحث..." : "Search..."}
-              className={cn(
-                "ml-2 w-full min-w-0 bg-transparent text-sm text-foreground outline-none",
-                isAr && "mr-2 ml-0 font-[var(--font-noto-arabic)]"
-              )}
+    <>
+      <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 lg:px-6">
+          <a href="#" className="flex min-w-0 items-center gap-3">
+            <Image
+              src="/logo.png"
+              alt="CRCJ Logo"
+              width={44}
+              height={44}
+              className="h-10 w-auto"
             />
-          </div>
-        </div>
+            <div className="hidden min-w-0 md:block">
+              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1E3A8A]">
+                CRCJ
+              </div>
+              <div
+                className={cn(
+                  "max-w-[260px] truncate text-sm font-semibold text-foreground xl:max-w-none",
+                  isAr && "font-[var(--font-noto-arabic)]"
+                )}
+              >
+                {isAr
+                  ? "مركز القاهرة الإقليمي للعدالة الجنائية"
+                  : "Cairo Regional Center for Criminal Justice"}
+              </div>
+            </div>
+          </a>
 
-        {/* Right: Controls */}
-        <div className="relative z-[100] flex shrink-0 items-center justify-end gap-2">
+          <div className="hidden flex-1 justify-center md:flex">
+            <div className="flex w-full max-w-xs items-center rounded-md border border-border bg-white px-3 py-2">
+              <Search className="h-4 w-4 text-muted-foreground" />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={handleSearchKeyDown}
+                placeholder={isAr ? "ابحث..." : "Search..."}
+                className={cn(
+                  "ml-2 w-full bg-transparent text-sm text-foreground outline-none",
+                  isAr && "mr-2 ml-0 font-[var(--font-noto-arabic)]"
+                )}
+              />
+            </div>
+          </div>
+
+          <div className="w-[150px]" />
+        </div>
+      </header>
+
+      {/* Floating controls above everything */}
+      <div className="fixed right-4 top-3 z-[99999] flex items-center gap-2 pointer-events-auto">
+        <button
+          type="button"
+          onClick={runSearch}
+          className={cn(
+            "hidden rounded-md bg-[#1E3A8A] px-4 py-2 text-sm font-semibold text-white md:block",
+            isAr && "font-[var(--font-noto-arabic)]"
+          )}
+        >
+          {isAr ? "بحث" : "Search"}
+        </button>
+
+        <div className="flex overflow-hidden rounded-md border border-border bg-white shadow-sm">
           <button
             type="button"
-            onClick={runSearch}
+            onClick={() => setLang("en")}
             className={cn(
-              "hidden rounded-md bg-[#1E3A8A] px-4 py-2 text-sm font-semibold text-white md:block",
-              isAr && "font-[var(--font-noto-arabic)]"
+              "px-3 py-2 text-sm font-semibold transition-colors",
+              lang === "en"
+                ? "bg-[#1E3A8A] text-white"
+                : "bg-white text-foreground"
             )}
           >
-            {isAr ? "بحث" : "Search"}
+            EN
           </button>
-
-          <div className="flex overflow-hidden rounded-md border border-border bg-white">
-            <button
-              type="button"
-              onClick={() => setLang("en")}
-              className={cn(
-                "px-3 py-1.5 text-sm font-semibold transition-colors",
-                lang === "en"
-                  ? "bg-[#1E3A8A] text-white"
-                  : "bg-white text-foreground"
-              )}
-            >
-              EN
-            </button>
-            <button
-              type="button"
-              onClick={() => setLang("ar")}
-              className={cn(
-                "px-3 py-1.5 text-sm font-semibold transition-colors",
-                lang === "ar"
-                  ? "bg-[#1E3A8A] text-white"
-                  : "bg-white text-foreground"
-              )}
-            >
-              AR
-            </button>
-          </div>
-
           <button
             type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-md border border-border bg-white"
-            aria-label="Toggle menu"
+            onClick={() => setLang("ar")}
+            className={cn(
+              "px-3 py-2 text-sm font-semibold transition-colors",
+              lang === "ar"
+                ? "bg-[#1E3A8A] text-white"
+                : "bg-white text-foreground"
+            )}
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            AR
           </button>
         </div>
+
+        <button
+          type="button"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="flex h-10 w-10 items-center justify-center rounded-md border border-border bg-white shadow-sm"
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
 
       {mobileMenuOpen && (
-        <nav className="border-t border-border bg-background px-4 py-4">
+        <nav className="fixed right-4 top-16 z-[99998] w-[280px] rounded-lg border border-border bg-background p-4 shadow-xl">
           <div className="mb-4 flex gap-2 md:hidden">
             <div className="flex flex-1 items-center rounded-md border border-border bg-white px-3 py-2">
               <Search className="h-4 w-4 text-muted-foreground" />
@@ -205,6 +207,6 @@ export function Header({ lang, setLang }: HeaderProps) {
           </div>
         </nav>
       )}
-    </header>
+    </>
   );
 }
