@@ -34,17 +34,17 @@ export function Newsletter({ lang }: NewsletterProps) {
   return (
     <section
       id="newsletter"
-      className="relative overflow-hidden bg-[#1E3A8A] text-white"
+      className="relative isolate overflow-hidden bg-[#1E3A8A] text-white"
     >
       {/* Subtle Gradient Overlays */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="pointer-events-none absolute inset-0 opacity-30">
         <div className="absolute -left-20 -top-20 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
         <div className="absolute -bottom-20 -right-20 h-60 w-60 rounded-full bg-white/5 blur-2xl" />
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/95 via-[#1E3A8A]/90 to-[#2563EB]/85" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/95 via-[#1E3A8A]/90 to-[#2563EB]/85" />
 
-      <div className="relative mx-auto max-w-6xl">
+      <div className="relative z-10 mx-auto max-w-6xl">
         <div className="grid gap-0 lg:grid-cols-2">
           {/* Newsletter Form */}
           <div className="px-4 py-12 lg:border-r lg:border-white/20 lg:px-8 lg:py-16">
