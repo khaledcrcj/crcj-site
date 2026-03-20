@@ -20,10 +20,19 @@ export default function Page() {
     <main
       dir={isAr ? "rtl" : "ltr"}
       className={isAr ? "font-[var(--font-noto-arabic)]" : "font-sans"}
+      onClickCapture={(e) => {
+        const el = e.target as HTMLElement;
+        console.log("CLICK TARGET:", el.tagName, el.className);
+      }}
     >
-      <div className="fixed bottom-4 right-4 z-[9999] rounded-md bg-black px-3 py-2 text-sm font-semibold text-white">
-        Current language: {lang}
-      </div>
+      {/* Desktop debug button */}
+      <button
+        type="button"
+        onClick={() => alert("Debug button works")}
+        className="fixed bottom-4 left-4 z-[999999] rounded-md bg-red-600 px-4 py-3 text-white shadow-lg"
+      >
+        Test Click
+      </button>
 
       <Header lang={lang} setLang={setLang} />
       <Hero lang={lang} />
