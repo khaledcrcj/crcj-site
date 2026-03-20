@@ -27,9 +27,9 @@ export function Header({ lang, setLang }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-6">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 lg:px-6">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3">
+        <a href="#" className="flex min-w-0 shrink-0 items-center gap-3">
           <Image
             src="/logo.png"
             alt="CRCJ Logo"
@@ -41,23 +41,27 @@ export function Header({ lang, setLang }: HeaderProps) {
             <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-700">
               CRCJ
             </div>
-            <div className={cn(
-              "text-sm font-semibold text-foreground lg:text-base",
-              isAr && "font-[var(--font-noto-arabic)]"
-            )}>
-              {isAr ? "مركز القاهرة الإقليمي للعدالة الجنائية" : "Cairo Regional Center for Criminal Justice"}
+            <div
+              className={cn(
+                "text-sm font-semibold text-foreground lg:text-base",
+                isAr && "font-[var(--font-noto-arabic)]"
+              )}
+            >
+              {isAr
+                ? "مركز القاهرة الإقليمي للعدالة الجنائية"
+                : "Cairo Regional Center for Criminal Justice"}
             </div>
           </div>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-6 lg:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               className={cn(
-                "text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
+                "whitespace-nowrap text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
                 isAr && "font-[var(--font-noto-arabic)]"
               )}
             >
@@ -67,9 +71,10 @@ export function Header({ lang, setLang }: HeaderProps) {
         </nav>
 
         {/* Language Switch + Mobile Menu */}
-        <div className="flex items-center gap-3">
-          <div className="flex overflow-hidden rounded-md border border-border">
+        <div className="relative z-20 flex shrink-0 items-center gap-3">
+          <div className="relative z-20 flex overflow-hidden rounded-md border border-border bg-white">
             <button
+              type="button"
               onClick={() => setLang("en")}
               className={cn(
                 "px-3 py-1.5 text-sm font-semibold transition-colors",
@@ -81,6 +86,7 @@ export function Header({ lang, setLang }: HeaderProps) {
               EN
             </button>
             <button
+              type="button"
               onClick={() => setLang("ar")}
               className={cn(
                 "px-3 py-1.5 text-sm font-semibold transition-colors",
@@ -93,8 +99,8 @@ export function Header({ lang, setLang }: HeaderProps) {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="flex h-10 w-10 items-center justify-center rounded-md border border-border lg:hidden"
             aria-label="Toggle menu"
