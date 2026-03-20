@@ -27,9 +27,9 @@ export function Header({ lang, setLang }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-3 lg:px-6">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-6">
         {/* Logo */}
-        <a href="#" className="flex min-w-0 items-center gap-3">
+        <a href="#" className="flex items-center gap-3">
           <Image
             src="/logo.png"
             alt="CRCJ Logo"
@@ -37,7 +37,7 @@ export function Header({ lang, setLang }: HeaderProps) {
             height={48}
             className="h-11 w-auto lg:h-12"
           />
-          <div className="hidden min-w-0 sm:block">
+          <div className="hidden sm:block">
             <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-700">
               CRCJ
             </div>
@@ -54,24 +54,11 @@ export function Header({ lang, setLang }: HeaderProps) {
           </div>
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden items-center justify-center gap-6 lg:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "whitespace-nowrap text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
-                isAr && "font-[var(--font-noto-arabic)]"
-              )}
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        {/* ❌ Desktop Navigation DISABLED FOR TEST */}
+        <nav className="hidden"></nav>
 
         {/* Language Switch + Mobile Menu */}
-        <div className="flex items-center justify-end gap-3">
+        <div className="flex items-center gap-3">
           <div className="flex overflow-hidden rounded-md border border-border">
             <button
               type="button"
@@ -99,6 +86,7 @@ export function Header({ lang, setLang }: HeaderProps) {
             </button>
           </div>
 
+          {/* Mobile Menu Button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -110,6 +98,7 @@ export function Header({ lang, setLang }: HeaderProps) {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <nav className="border-t border-border bg-background px-4 py-4 lg:hidden">
           <div className="flex flex-col gap-3">
