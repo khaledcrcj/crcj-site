@@ -12,11 +12,11 @@ export function Footer({ lang }: FooterProps) {
   const isAr = lang === "ar";
 
   return (
-    <footer className="relative border-t border-white/20 bg-[#1E3A8A] py-10 text-white">
-      {/* Gradient (same style as hero/newsletter) */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/95 via-[#1E3A8A]/90 to-[#2563EB]/85" />
+    <footer className="relative isolate overflow-hidden border-t border-white/20 bg-[#1E3A8A] py-10 text-white">
+      {/* Gradient */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/95 via-[#1E3A8A]/90 to-[#2563EB]/85" />
 
-      <div className="relative mx-auto max-w-6xl px-4 text-center lg:px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 text-center lg:px-6">
         <p
           className={cn(
             "text-sm text-white/80",
