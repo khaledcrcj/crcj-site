@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import { type Language } from "@/lib/translations";
-import { useState } from "react";
 
 interface HeaderProps {
   lang: Language;
@@ -10,60 +8,58 @@ interface HeaderProps {
 }
 
 export function Header({ lang, setLang }: HeaderProps) {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
-    <header className="border-b bg-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-        {/* Logo */}
-        <div className="flex items-center gap-3">
-          <Image src="/logo.png" alt="CRCJ" width={40} height={40} />
-          <span className="text-sm font-semibold">
-            {lang === "ar"
-              ? "مركز القاهرة الإقليمي للعدالة الجنائية"
-              : "CRCJ"}
-          </span>
-        </div>
+    <div style={{ padding: "20px", background: "white", borderBottom: "1px solid #ddd" }}>
+      <span style={{ marginRight: "20px", fontWeight: 700 }}>
+        {lang === "ar" ? "العربية" : "English"}
+      </span>
 
-        {/* Controls */}
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setLang("en")}
-            className={`px-3 py-1 rounded ${
-              lang === "en" ? "bg-blue-700 text-white" : "bg-gray-200"
-            }`}
-          >
-            EN
-          </button>
+      <button
+        type="button"
+        onClick={() => setLang("en")}
+        style={{
+          marginRight: "10px",
+          padding: "10px 16px",
+          background: lang === "en" ? "#1E3A8A" : "#eee",
+          color: lang === "en" ? "white" : "black",
+          border: "none",
+          borderRadius: "6px",
+          cursor: "pointer",
+        }}
+      >
+        EN
+      </button>
 
-          <button
-            onClick={() => setLang("ar")}
-            className={`px-3 py-1 rounded ${
-              lang === "ar" ? "bg-blue-700 text-white" : "bg-gray-200"
-            }`}
-          >
-            AR
-          </button>
+      <button
+        type="button"
+        onClick={() => setLang("ar")}
+        style={{
+          marginRight: "10px",
+          padding: "10px 16px",
+          background: lang === "ar" ? "#1E3A8A" : "#eee",
+          color: lang === "ar" ? "white" : "black",
+          border: "none",
+          borderRadius: "6px",
+          cursor: "pointer",
+        }}
+      >
+        AR
+      </button>
 
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="px-3 py-1 rounded bg-gray-200"
-          >
-            ☰
-          </button>
-        </div>
-      </div>
-
-      {/* Menu */}
-      {menuOpen && (
-        <div className="border-t px-4 py-4">
-          <div className="flex flex-col gap-2">
-            <a href="#about">About</a>
-            <a href="#areas">What We Do</a>
-            <a href="#programs">Programs</a>
-          </div>
-        </div>
-      )}
-    </header>
+      <button
+        type="button"
+        onClick={() => alert("Menu works")}
+        style={{
+          padding: "10px 16px",
+          background: "#eee",
+          color: "black",
+          border: "none",
+          borderRadius: "6px",
+          cursor: "pointer",
+        }}
+      >
+        Menu
+      </button>
+    </div>
   );
 }
