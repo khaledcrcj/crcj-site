@@ -123,3 +123,26 @@
     @apply bg-background text-foreground;
   }
 }
+html,
+body,
+main {
+  pointer-events: auto !important;
+}
+
+body * {
+  pointer-events: none;
+}
+
+a,
+button,
+input,
+textarea,
+select,
+label,
+summary,
+[role="button"],
+[onclick] {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 2147483647 !important;
+}
