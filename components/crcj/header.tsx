@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { type Language } from "@/lib/translations";
 
 interface HeaderProps {
@@ -9,57 +10,24 @@ interface HeaderProps {
 
 export function Header({ lang, setLang }: HeaderProps) {
   return (
-    <div style={{ padding: "20px", background: "white", borderBottom: "1px solid #ddd" }}>
-      <span style={{ marginRight: "20px", fontWeight: 700 }}>
-        {lang === "ar" ? "العربية" : "English"}
-      </span>
+    <div style={{ padding: "20px", background: "white", borderBottom: "1px solid #ddd", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      
+      {/* LEFT: Logo */}
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <Image src="/logo.png" alt="CRCJ" width={40} height={40} />
+        <span style={{ fontWeight: 700 }}>
+          {lang === "ar"
+            ? "مركز القاهرة الإقليمي للعدالة الجنائية"
+            : "CRCJ"}
+        </span>
+      </div>
 
-      <button
-        type="button"
-        onClick={() => setLang("en")}
-        style={{
-          marginRight: "10px",
-          padding: "10px 16px",
-          background: lang === "en" ? "#1E3A8A" : "#eee",
-          color: lang === "en" ? "white" : "black",
-          border: "none",
-          borderRadius: "6px",
-          cursor: "pointer",
-        }}
-      >
-        EN
-      </button>
-
-      <button
-        type="button"
-        onClick={() => setLang("ar")}
-        style={{
-          marginRight: "10px",
-          padding: "10px 16px",
-          background: lang === "ar" ? "#1E3A8A" : "#eee",
-          color: lang === "ar" ? "white" : "black",
-          border: "none",
-          borderRadius: "6px",
-          cursor: "pointer",
-        }}
-      >
-        AR
-      </button>
-
-      <button
-        type="button"
-        onClick={() => alert("Menu works")}
-        style={{
-          padding: "10px 16px",
-          background: "#eee",
-          color: "black",
-          border: "none",
-          borderRadius: "6px",
-          cursor: "pointer",
-        }}
-      >
-        Menu
-      </button>
+      {/* RIGHT: Controls */}
+      <div>
+        <button onClick={() => setLang("en")}>EN</button>
+        <button onClick={() => setLang("ar")}>AR</button>
+        <button onClick={() => alert("Menu works")}>Menu</button>
+      </div>
     </div>
   );
 }
