@@ -28,30 +28,12 @@ export function Header({ lang, setLang }: HeaderProps) {
 
   const searchTargets = useMemo(
     () => [
-      {
-        href: "#about",
-        keywords: ["about", "who we are", "mission", "vision", "عن", "حول", "من نحن"],
-      },
-      {
-        href: "#areas",
-        keywords: ["areas", "focus", "themes", "topics", "مجالات", "محاور", "تركيز"],
-      },
-      {
-        href: "#publications",
-        keywords: ["publications", "research", "reports", "papers", "منشورات", "أبحاث", "تقارير"],
-      },
-      {
-        href: "#programs",
-        keywords: ["programs", "courses", "training", "education", "برامج", "دورات", "تدريب"],
-      },
-      {
-        href: "#newsletter",
-        keywords: ["newsletter", "updates", "news", "subscribe", "نشرة", "أخبار", "اشتراك"],
-      },
-      {
-        href: "#contact",
-        keywords: ["contact", "email", "location", "reach", "تواصل", "اتصال", "بريد", "عنوان"],
-      },
+      { href: "#about", keywords: ["about", "mission", "vision", "عن", "من نحن"] },
+      { href: "#areas", keywords: ["areas", "focus", "themes", "مجالات", "محاور"] },
+      { href: "#publications", keywords: ["publications", "research", "reports", "منشورات", "أبحاث"] },
+      { href: "#programs", keywords: ["programs", "training", "courses", "برامج", "تدريب"] },
+      { href: "#newsletter", keywords: ["newsletter", "news", "updates", "نشرة", "أخبار"] },
+      { href: "#contact", keywords: ["contact", "email", "location", "تواصل", "اتصال"] },
     ],
     []
   );
@@ -68,12 +50,6 @@ export function Header({ lang, setLang }: HeaderProps) {
       window.location.hash = match.href;
       setMobileMenuOpen(false);
       setSearch("");
-      return;
-    }
-
-    const fallback = document.body.innerText.toLowerCase().includes(query);
-    if (!fallback) {
-      alert(isAr ? "لم يتم العثور على نتيجة." : "No matching section found.");
     }
   };
 
@@ -84,25 +60,30 @@ export function Header({ lang, setLang }: HeaderProps) {
     }
   };
 
+  const changeLang = (value: Language) => {
+    setLang(value);
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 lg:px-6">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3">
+        <a href="#" className="flex min-w-0 shrink-0 items-center gap-3">
           <Image
             src="/logo.png"
             alt="CRCJ Logo"
-            width={48}
-            height={48}
-            className="h-11 w-auto lg:h-12"
+            width={44}
+            height={44}
+            className="h-10 w-auto"
           />
-          <div className="hidden sm:block">
-            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-700">
+          <div className="hidden min-w-0 md:block">
+            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1E3A8A]">
               CRCJ
             </div>
             <div
               className={cn(
-                "text-sm font-semibold text-foreground lg:text-base",
+                "max-w-[260px] truncate text-sm font-semibold text-foreground xl:max-w-none",
                 isAr && "font-[var(--font-noto-arabic)]"
               )}
             >
@@ -114,13 +95,13 @@ export function Header({ lang, setLang }: HeaderProps) {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               className={cn(
-                "text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
+                "whitespace-nowrap text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
                 isAr && "font-[var(--font-noto-arabic)]"
               )}
             >
@@ -129,8 +110,8 @@ export function Header({ lang, setLang }: HeaderProps) {
           ))}
         </nav>
 
-        {/* Desktop Search */}
-        <div className="hidden lg:flex items-center gap-3">
+        {/* Desktop Search + Language */}
+        <div className="hidden shrink-0 items-center gap-3 lg:flex">
           <div className="flex items-center rounded-md border border-border bg-white px-3 py-2">
             <Search className="h-4 w-4 text-muted-foreground" />
             <input
@@ -140,7 +121,7 @@ export function Header({ lang, setLang }: HeaderProps) {
               onKeyDown={handleSearchKeyDown}
               placeholder={isAr ? "ابحث..." : "Search..."}
               className={cn(
-                "ml-2 w-40 bg-transparent text-sm text-foreground outline-none",
+                "ml-2 w-36 bg-transparent text-sm text-foreground outline-none",
                 isAr && "mr-2 ml-0 font-[var(--font-noto-arabic)]"
               )}
             />
@@ -156,16 +137,14 @@ export function Header({ lang, setLang }: HeaderProps) {
           >
             {isAr ? "بحث" : "Search"}
           </button>
-        </div>
 
-        {/* Language + Mobile Menu */}
-        <div className="flex items-center gap-3">
-          <div className="flex overflow-hidden rounded-md border border-border">
+          <div className="relative z-[60] flex overflow-hidden rounded-md border border-border bg-white">
             <button
               type="button"
-              onClick={() => setLang("en")}
+              onMouseDown={() => changeLang("en")}
+              onClick={() => changeLang("en")}
               className={cn(
-                "px-3 py-1.5 text-sm font-semibold transition-colors",
+                "relative z-[61] px-3 py-2 text-sm font-semibold transition-colors",
                 lang === "en"
                   ? "bg-[#1E3A8A] text-white"
                   : "bg-white text-foreground hover:bg-muted"
@@ -175,12 +154,45 @@ export function Header({ lang, setLang }: HeaderProps) {
             </button>
             <button
               type="button"
-              onClick={() => setLang("ar")}
+              onMouseDown={() => changeLang("ar")}
+              onClick={() => changeLang("ar")}
+              className={cn(
+                "relative z-[61] px-3 py-2 text-sm font-semibold transition-colors",
+                lang === "ar"
+                  ? "bg-[#1E3A8A] text-white"
+                  : "bg-white text-foreground hover:bg-muted"
+              )}
+            >
+              AR
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile controls */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <div className="relative z-[60] flex overflow-hidden rounded-md border border-border bg-white">
+            <button
+              type="button"
+              onMouseDown={() => changeLang("en")}
+              onClick={() => changeLang("en")}
+              className={cn(
+                "px-3 py-1.5 text-sm font-semibold transition-colors",
+                lang === "en"
+                  ? "bg-[#1E3A8A] text-white"
+                  : "bg-white text-foreground"
+              )}
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              onMouseDown={() => changeLang("ar")}
+              onClick={() => changeLang("ar")}
               className={cn(
                 "px-3 py-1.5 text-sm font-semibold transition-colors",
                 lang === "ar"
                   ? "bg-[#1E3A8A] text-white"
-                  : "bg-white text-foreground hover:bg-muted"
+                  : "bg-white text-foreground"
               )}
             >
               AR
@@ -190,7 +202,7 @@ export function Header({ lang, setLang }: HeaderProps) {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-md border border-border lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-md border border-border"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -221,7 +233,7 @@ export function Header({ lang, setLang }: HeaderProps) {
               type="button"
               onClick={runSearch}
               className={cn(
-                "rounded-md bg-[#1E3A8A] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#16306f]",
+                "rounded-md bg-[#1E3A8A] px-4 py-2 text-sm font-semibold text-white",
                 isAr && "font-[var(--font-noto-arabic)]"
               )}
             >
