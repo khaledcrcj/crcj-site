@@ -28,22 +28,26 @@ export function Header({ lang, setLang }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 lg:px-6">
+
         {/* Logo */}
         <a href="#" className="flex min-w-0 shrink-0 items-center gap-3">
           <Image
-            src="/logo.png"
+            src="/crcj_logo_traced.svg"
             alt="CRCJ Logo"
-            width={48}
-            height={48}
-            className="h-11 w-auto lg:h-12"
+            width={56}
+            height={56}
+            className="h-12 w-auto lg:h-14"
+            priority
           />
+
           <div className="hidden min-w-0 sm:block">
             <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-700">
               CRCJ
             </div>
+
             <div
               className={cn(
-                "text-sm font-semibold text-foreground lg:text-base",
+                "text-sm font-semibold text-foreground lg:text-base leading-tight",
                 isAr && "font-[var(--font-noto-arabic)]"
               )}
             >
@@ -72,7 +76,9 @@ export function Header({ lang, setLang }: HeaderProps) {
 
         {/* Language Switch + Mobile Menu */}
         <div className="relative z-20 flex shrink-0 items-center gap-3">
-          <div className="relative z-20 flex overflow-hidden rounded-md border border-border bg-white">
+          
+          {/* Language Switch */}
+          <div className="flex overflow-hidden rounded-md border border-border bg-white">
             <button
               type="button"
               onClick={() => setLang("en")}
@@ -106,7 +112,11 @@ export function Header({ lang, setLang }: HeaderProps) {
             className="flex h-10 w-10 items-center justify-center rounded-md border border-border lg:hidden"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </button>
         </div>
       </div>
