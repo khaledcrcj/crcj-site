@@ -7,6 +7,7 @@ import { schemaTypes } from "./sanity/schemaTypes";
 export default defineConfig({
   name: "crcj",
   title: "CRCJ Website Editor",
+  basePath: "/studio",
   projectId,
   dataset,
   plugins: [structureTool(), visionTool({ defaultApiVersion: apiVersion })],
